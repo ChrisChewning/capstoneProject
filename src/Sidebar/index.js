@@ -5,34 +5,38 @@ import React, {Component} from 'react';
 class SideBar extends Component {
 constructor(){
   super();
+  this.toggle = this.toggle.bind(this); //what does this mean? doesnt work without it.
     this.state = {
       toggle: false,
   }
 }
 
+//Change the state.
 toggle() {
    this.setState({toggle: !this.state.toggle});
+   console.log('toggle function working:', this.state.toggle);
  }
 
-// const handleClick = () => {
-//   e.preventDefault();
-//   this.setState(toggle: true);
-//   console.log('the sidebar was clicked');
-// }
-
-//   return (
-//     <a href="#" onClick={handleClick}>
-//       Click me
-//     </a>
-//   );
-// }
 
 
 
-render() {
+
+// render() {
+//   const sidebarHidden = () => {
+//     if (this.state.toggle === false) {
+//
+//     } else {
+//
+//     }
+//   }
+
+
+render(){
   return (
-    <div className='sidebarContainer'>
-  <div className='toggleSidebar'>
+
+    <div className={this.state.toggle ? 'hiddenText': 'sidebarContainer'} onClick={this.toggle}>
+  <div className={this.state.toggle ? 'toggleSidebar' : 'active'}
+                   onClick={this.toggle}>
     <span></span>
     <span></span>
     <span></span>
