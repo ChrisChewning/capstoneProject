@@ -20,8 +20,21 @@
   padding: 50px 0px;
   border: 1px solid rgba(100,100,100, 0.3);
   width: 200px;
+  text-decoration: none;
 
 }
+
+/* .sidebarContainer ul li a { */
+    /* color: white;
+    text-decoration: none;
+} */
+
+
+.sidebarContainer ul li a, a:visited {
+    color: white;
+    text-decoration: none;
+}
+
 
 .toggleSidebar {
   position: absolute;
@@ -47,4 +60,5 @@
 
 .hiddenText {
   color: white;
+
 }

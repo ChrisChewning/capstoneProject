@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 
+import { Link } from 'react-router-dom';
 
 class SideBar extends Component {
 constructor(){
@@ -30,9 +31,9 @@ render(){
     <span></span>
 </div>
     <ul>
-      <li>Home</li>
-      <li>To-Do List</li>
-      <li>Notepad</li>
+      <li><Link to='home'>Home</Link></li>
+      <li><Link to='/to-dos'>To-Do List</Link></li>
+      <li><Link to='notepad'>Notepad</Link></li>
     </ul>
 </div>
 )}
