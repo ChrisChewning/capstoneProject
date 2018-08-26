@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-// import { Nav, NavItem, NavLink } from 'reactstrap';
 
 
 class SideBar extends Component {
@@ -11,7 +10,8 @@ constructor(){
   }
 }
 
-//Change the state.
+
+
 toggle() {
    this.setState({toggle: !this.state.toggle});
    console.log('toggle function working:', this.state.toggle);
@@ -19,22 +19,10 @@ toggle() {
 
 
 
-
-
-// render() {
-//   const sidebarHidden = () => {
-//     if (this.state.toggle === false) {
-//
-//     } else {
-//
-//     }
-//   }
-
-
 render(){
   return (
 
-    <div className={this.state.toggle ? 'hiddenText': 'sidebarContainer'} onClick={this.toggle}>
+    <div className={this.state.toggle ? 'sidebarContainer': 'hiddenText'} onClick={this.toggle}>
   <div className={this.state.toggle ? 'toggleSidebar' : 'active'}
                    onClick={this.toggle}>
     <span></span>
