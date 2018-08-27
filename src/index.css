@@ -4,6 +4,48 @@
   font-family: sans-serif;
 }
 
+body {
+  background-image: url("./img/backgroundImage.jpg");
+  background-size: cover;
+  /* opacity: .2; */
+
+}
+
+
+/* NOTE COMPONENT STYLING */
+
+.addNewNote {
+  position: fixed;
+  top: 0;
+  right: 0;
+  font-size: 3em;
+}
+
+.notesContainer {
+  /* background-image: url("./img/notesBackground.jpg"); */
+  /* background-color: black; */
+}
+
+.notesIcons {
+    text-align: right;
+
+}
+
+.note {
+  background-color: #F6F7EB;
+  display: block;
+  width: 20vw;
+  border: 1px solid black;
+  box-shadow: 10px 5px 5px green;
+  padding: 20px;
+}
+
+
+
+
+
+/* SIDEBAR STYLING */
+
 .sidebarContainer {
   position: fixed;
   width: 200px;
@@ -23,11 +65,6 @@
   text-decoration: none;
 
 }
-
-/* .sidebarContainer ul li a { */
-    /* color: white;
-    text-decoration: none;
-} */
 
 
 .sidebarContainer ul li a, a:visited {
@@ -58,7 +95,6 @@
   margin: 3px 0px;
 }
 
-.hiddenText {
-  color: white;
-
+.hiddenText ul li a {
+  visibility: hidden;
 }
