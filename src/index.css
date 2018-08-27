@@ -21,10 +21,6 @@ body {
   font-size: 3em;
 }
 
-.notesContainer {
-  /* background-image: url("./img/notesBackground.jpg"); */
-  /* background-color: black; */
-}
 
 .notesIcons {
     display: flex;
@@ -40,6 +36,10 @@ body {
   padding: 20px;
 }
 
+
+/* .noteNew {
+  visibility: hidden;
+} */
 
 
 

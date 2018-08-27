@@ -4,26 +4,52 @@ import {Button, Form, Icon, Row, Input} from 'react-materialize'
 class ToDoList extends Component {
   constructor(){
     super();
-    this.addNote = this.addNote.bind(this); //react docs best-preactice.
+
+    this.state = {
+      notes: [],
+    }
+
+
+    this.newNote = this.newNote.bind(this);
+    this.postNote = this.postNote.bind(this); //react docs best-preactice.
     this.deleteNote = this.deleteNote.bind(this);
     this.editNote = this.editNote.bind(this);
     this.closeNote = this.closeNote.bind(this);
   }
 
+  newNote(e){
+    e.preventDefault(e);
+    console.log('newNote:', this.newNote);
+  }
 
-  addNote(){
-    console.log('add:', this.addNote);
+  postNote(e){
+    e.preventDefault(e);
+    console.log('post:', this.postNote);
+
+    //Take the whole note object, which includes the title and the text.
+    const note = {
+      title: this.noteTitle.value,
+      text: this.noteText.value
+    }
+
+    //copying our notes array in state.
+    const newNotes = Array.from(this.state.notes);
+    newNotes.push(note); //now push our note.
+    this.setState({notes: newNotes}); //now this.state.notes has the value of newNotes, which is all the notes.
    }
 
-   deleteNote(){
+   deleteNote(e){
+     e.preventDefault(e);
      console.log('delete:', this.deleteNote);
    }
 
-   editNote(){
+   editNote(e){
+     e.preventDefault(e);
      console.log('edit:', this.editNote);
    }
 
-   closeNote(){
+   closeNote(e){
+     e.preventDefault(e);
      console.log('close:', this.closeNote);
    }
 
@@ -31,11 +57,12 @@ class ToDoList extends Component {
   render() {
     return (
       <div className='notesContainer'>
-        <div onClick={this.addNote}>
+        <div onClick={this.newNote}>
           <Icon className='addNewNote'>add_to_photos</Icon>
         </div>
 
-        <form className='note'>
+
+        <form onSubmit={this.postNote} className='note'>
           <div className='notesIcons'>
             <div onClick={this.deleteNote}>
           <Icon extra-small onClick={this.deleteNote}>delete</Icon>
@@ -47,8 +74,8 @@ class ToDoList extends Component {
           <Icon extra-small>close</Icon>
           </div>
         </div>
-          <Row><Input s={8} type='' className='noteTitle' label='Title' /></Row>
-          <Row><Input s={12} type='textarea' className='note' label='Text' /></Row>
+          <Row><Input s={8} type='' className='noteTitle' name='noteTitle' ref={ref => this.noteTitle = ref} label='Title' /></Row>
+          <Row><Input s={12} type='textarea' className='note' name='noteText' ref={ref => this.noteText = ref}  label='Text' /></Row>
           <Button waves='light' type='submit'>Submit</Button>
         </form>
 
