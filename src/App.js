@@ -7,7 +7,7 @@ import Sidebar from './Sidebar';
 import Home from './Home';
 import Notepad from './Notepad';
 import ToDoList from './ToDoList';
-
+import Notes from './Notes';
 
 
 
@@ -16,6 +16,7 @@ class App extends Component {
     return (
       <div>
         < Sidebar />
+        < Notes />
         {/* < ToDoList /> */}
 
         <Switch>

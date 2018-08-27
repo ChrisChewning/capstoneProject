@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Button, Form, Icon, Row, Input} from 'react-materialize'
 
-class ToDoList extends Component {
+class Notepad extends Component {
   constructor(){
     super();
 
@@ -30,13 +30,18 @@ class ToDoList extends Component {
     const note = {
       title: this.noteTitle.value,
       text: this.noteText.value
-    }
 
+    }
     //copying our notes array in state.
     const newNotes = Array.from(this.state.notes);
     newNotes.push(note); //now push our note.
     this.setState({notes: newNotes}); //now this.state.notes has the value of newNotes, which is all the notes.
+    // console.log(this.state.notes);
+console.log(this.state.notes);
    }
+
+
+
 
    deleteNote(e){
      e.preventDefault(e);
@@ -74,8 +79,8 @@ class ToDoList extends Component {
           <Icon extra-small>close</Icon>
           </div>
         </div>
-          <Row><Input s={8} type='' className='noteTitle' name='noteTitle' ref={ref => this.noteTitle = ref} label='Title' /></Row>
-          <Row><Input s={12} type='textarea' className='note' name='noteText' ref={ref => this.noteText = ref}  label='Text' /></Row>
+          <Row><Input s={8} type='text' className='noteTitle' name='noteTitle' ref={ref => this.noteTitle = ref} label='Title' /></Row>
+          <Row><Input s={12} type='text' className='note' name='noteText' ref={ref => this.noteText = ref}  label='Text' /></Row>
           <Button waves='light' type='submit'>Submit</Button>
         </form>
 
@@ -83,4 +88,4 @@ class ToDoList extends Component {
     )}
 }
 
-export default ToDoList;
+export default Notepad;
