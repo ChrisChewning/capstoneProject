@@ -27,16 +27,16 @@ body {
 }
 
 .notesIcons {
-    text-align: right;
-
+    display: flex;
+    justify-content: flex-end;
 }
 
 .note {
   background-color: #F6F7EB;
-  display: block;
+  /* background-color: #7fb597; */
   width: 20vw;
   border: 1px solid black;
-  box-shadow: 10px 5px 5px green;
+  box-shadow: 10px 5px 5px #A4A5AE;
   padding: 20px;
 }
 
