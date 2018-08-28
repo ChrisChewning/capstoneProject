@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
+// import GoogleLogin from 'react-google-login';
+import { GoogleLogin } from 'react-google-login';
 
-class ToDoList extends Component {
 
+class Home extends Component {
 
     render() {
-      return <h1>Home</h1>;
-    }
-  }
+      return(
+        <div>
+        <h1>Home</h1>
+</div>
+)
 
-export default ToDoList;
+}
+
+}
+export default Home;

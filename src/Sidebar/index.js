@@ -24,18 +24,26 @@ render(){
   return (
 
     <div className="wrapper">
+
+      {/* this div needs everything in it? */}
     <div className={this.state.toggle ? 'sidebarContainer': 'hiddenText'} onClick={this.toggle}>
-  <div className={this.state.toggle ? 'toggleSidebar' : 'active'}
+
+
+{/* this open & closed div needs the burger in it. */}
+  <div className={this.state.toggle ? 'open' : 'closed'}
                    onClick={this.toggle}>
     <span></span>
     <span></span>
     <span></span>
 </div>
+
+
+
     <ul>
-      <li><Link to='home'>Home</Link></li>
-      <li><Link to='/to-dos'>To-Do List</Link></li>
-      <li><Link to='/notepad'>Notepad</Link></li>
-      <li><Link to='calendar'>Calendar</Link></li>
+      <li><Link to='/home' className=''>Home</Link></li>
+      <li><Link to='/to-dos' className=''>To-Do List</Link></li>
+      <li><Link to='/notepad' className=''>Notepad</Link></li>
+      <li><Link to='/calendar' className=''>Calendar</Link></li>
     </ul>
 </div>
 </div>

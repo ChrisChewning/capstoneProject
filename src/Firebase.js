@@ -1,25 +1,36 @@
-import { connect } from 'react-firebase';
-// import firebase from 'firebase'
-// const config = {
-//     apiKey: "AIzaSyDblTESEB1SbAVkpy2q39DI2OHphL2-Jxw",
-//     authDomain: "fun-food-friends-eeec7.firebaseapp.com",
-//     databaseURL: "https://fun-food-friends-eeec7.firebaseio.com",
-//     projectId: "fun-food-friends-eeec7",
-//     storageBucket: "fun-food-friends-eeec7.appspot.com",
-//     messagingSenderId: "144750278413"
-// };
-// firebase.initializeApp(config);
-// export default firebase;
+// import firebase from 'firebase';
+// import { connect } from 'react-firebase';
 //
-// 
-// const config = {
-//     apiKey: "AIzaSyAzFb_TW6s_2DvByFaZrwUpLKIC7rHc10Y",
-//     authDomain: "capstone-chewning.firebaseapp.com",
-//     databaseURL: "https://capstone-chewning.firebaseio.com",
-//     projectId: "capstone-chewning",
-//     storageBucket: "capstone-chewning.appspot.com",
-//     messagingSenderId: "240236777398"
-// };
-// firebase.initializeApp(config);
-
-export default firebase;
+//   {/* // Initialize Firebase */}
+//   const config = {
+//       apiKey: "AIzaSyAzFb_TW6s_2DvByFaZrwUpLKIC7rHc10Y",
+//       authDomain: "capstone-chewning.firebaseapp.com",
+//       databaseURL: "https://capstone-chewning.firebaseio.com",
+//       projectId: "capstone-chewning",
+//       storageBucket: "capstone-chewning.appspot.com",
+//       messagingSenderId: "240236777398",
+//
+//       scopes: [
+//                  "email",
+//                  "profile",
+//                  "https://www.googleapis.com/auth/calendar"
+//         ],
+//         discoveryDocs: [
+//     "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"
+//     ]
+//
+//   };
+//
+//   var uiConfig = {
+//    signInSuccessUrl: “https://capstone-chewning.firebaseio.com”,
+//    signInOptions: [{
+//      provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+//      scopes: config.scopes
+//    }],
+//    // Terms of service url.
+//    tosUrl: “<your-tos-url>”
+//   };
+//
+//   firebase.initializeApp(config);  {/* // Initialize Firebase */}
+//
+//   export default firebase;
