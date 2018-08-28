@@ -8,6 +8,7 @@ body {
   background-image: url("./img/backgroundImage.jpg");
   background-size: cover;
   /* opacity: .2; */
+  /* center no repeat; */
 
 }
 
@@ -101,3 +102,36 @@ body {
 .hiddenText ul li a {
   visibility: hidden;
 }
+
+
+
+/* NOTEPAD PAGE */
+
+.notepadContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.notepad {
+  width: 75vw;
+  height: 75vh;
+  align-items: center;
+  background-color: #fffff4 !important;
+  color: black !important;
+  font-size: 2em;
+  box-shadow: 10px 5px 5px #A4A5AE;
+  word-wrap: break-word;
+  overflow: auto;
+  /* background-attachment: local;
+  background-image:
+  linear-gradient(to right, white 10px, transparent 10px),
+  linear-gradient(to left, white 10px, transparent 10px),
+  repeating-linear-gradient(white, white 30px, #ccc 30px, #ccc 31px, white 31px);
+  line-height: 31px;
+  padding: 8px 10px; */
+}
+
+/* .trigger {
+resize:  both;
+} */

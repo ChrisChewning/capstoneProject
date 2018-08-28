@@ -31,7 +31,7 @@ class App extends Component {
     return (
       <div>
         < Sidebar />
-        < Notes />
+        {/* < Notes /> */}
         {/* < ToDoList /> */}
 
         <Switch>
