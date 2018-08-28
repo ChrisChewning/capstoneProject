@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 // import firebase from './Firebase.js';
 import firebase from 'firebase';
+// import firebase from './Firebase';
 import { connect } from 'react-firebase';
 
 // import { Route, Redirect, Switch } from 'react-router-dom';
@@ -11,8 +12,6 @@ import Home from './Home';
 import Notepad from './Notepad';
 import ToDoList from './ToDoList';
 import Notes from './Notes';
-
-
 
   {/* // Initialize Firebase */}
   const config = {

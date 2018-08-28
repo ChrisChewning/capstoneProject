@@ -7,9 +7,9 @@ class Notepad extends Component {
   constructor(){
     super();
     this.state = {
-      // notes: [],
       title: '',
       text: '',
+      notes: [],
     }
     this.newNote = this.newNote.bind(this); //react docs best-practice.
     this.postNote = this.postNote.bind(this);
@@ -38,68 +38,53 @@ class Notepad extends Component {
 
   postNote(e){   //onSubmit fn.
     e.preventDefault();
-    console.log('post:', this.postNote);
-    const notesRef = firebase.database().ref('notes'); //creates space in firebase db.
+    // console.log('post:', this.postNote);
+    const notesRef = firebase.database().ref('notes'); //creates space in firebase db. note: there are no objects in firebase.
     const note = {
       title: this.state.title,
-      user: this.state.text
+      text: this.state.text,
     }
     notesRef.push(note); //sends a copy of our object to store in Firebase.
     this.setState({
       title: '',
-      text: ''
+      text: '',
     });
   }
 
 
 
 
-
+//START tracking notes when page loads.
   componentDidMount() {
-     const notesRef = firebase.database().ref('items');
-     notesRef.on('value', (snapshot) => {
-       let items = snapshot.val();
-       let newState = [];
-       for (let item in items) {
+     const notesRef = firebase.database().ref('notes');
+     notesRef.on('value', (snapshot) => { //overview of notes in db.
+       let notes = snapshot.val(); //listener
+       let newState = []; //instatiate & populate with our data.
+       for (let note in notes) {  //loop over & push results into one object.
          newState.push({
-           id: item,
-           title: items[item].title,
-           text: items[item].text
+           id: note,
+           title: notes[note].title,
+           text: notes[note].text,
          });
        }
-       this.setState({
-         items: newState
+       this.setState({ //update state with all the notes in our db.
+         notes: newState
        });
      });
    }
-   removeItem(itemId) {
-     const itemRef = firebase.database().ref(`/items/${itemId}`);
-     itemRef.remove();
+
+
+
+   removeNote(noteId) {
+     const noteRef = firebase.database().ref(`/notes/${noteId}`);
+     noteRef.remove();
    }
-
-    // const note = {
-    //   title: this.state.title,
-    //   text: this.state.text
-    // }
-
-
-    // const note = { //whole note object.  .value is the actual text.
-    //   title: this.noteTitle,
-    //   text: this.noteText, //.value?
-    // }
-
-//ALL WORKING
-    // const newNotes = Array.from(this.state.notes);
-    // newNotes.push(note);
-    // this.setState({notes: newNotes});  //only setting state once the new note has been pushed.
-    // console.log(this);
-   // }
 
 
 
 
    deleteNote(e){
-     e.preventDefault();
+     // e.preventDefault();
      console.log('delete:', this.deleteNote);
    }
 
@@ -116,15 +101,17 @@ class Notepad extends Component {
 
   render() {
     console.log('this is title:', this.state.title);
-    console.log('this is text:', this.state.text);  //EMPTY ARRAY
+    console.log('this is text:', this.state.text);
+    console.log('notes state:', this.state.notes);
     return (
       <div className='notesContainer'>
         <div onClick={this.newNote}>
           <Icon className='addNewNote'>add_to_photos</Icon>
         </div>
 
-
-        <form onSubmit={this.postNote} className='note'>
+<div className='note'>
+        <form onSubmit={this.postNote}>
+          {/* form onSubmit={this.postNote}className='note'> */}
           <div className='notesIcons'>
             <div onClick={this.deleteNote}>
           <Icon extra-small onClick={this.deleteNote}>delete</Icon>
@@ -137,7 +124,6 @@ class Notepad extends Component {
           </div>
         </div>
 
-
           <Row>
             <Input s={8} type='text' className='noteTitle' name='title' onChange={this.handleChange} value={this.state.title} label='Title'  />
           </Row>
@@ -149,8 +135,39 @@ class Notepad extends Component {
 
           <Button waves='light' type='submit' value='add new note'>Submit</Button>
         </form>
+</div>
+
+
+        <section className='display-note'>
+          <div className="wrapper">
+                <ul>
+                  {this.state.notes.map(note => {
+                    return (
+                      <li key={note.id}>
+                      <div className="note">
+
+                        <div>
+                      <Button onClick={() => this.removeNote(note.id)}>delete</Button>
+                      </div>
+
+                        {/* <button>
+                          <Icon extra-small onClick={this.deleteNote}>delete</Icon>
+                      </button> */}
+
+                        <div className='noteTitle'>{note.title}</div>
+                        <div className='noteText'>{note.text}</div>
+
+                        </div>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </div>
+          </section>
 
       </div>
+
+
     )}
 }
 
