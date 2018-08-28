@@ -32,6 +32,8 @@ body {
   box-shadow: 10px 5px 5px #A4A5AE;
   padding: 20px;
   font-size: 2em;
+  position: relative;
+  z-index: -2;
 }
 
 .notesIcons {
@@ -67,29 +69,41 @@ body {
   border: 1px solid rgba(100,100,100, 0.3);
   width: 200px;
   text-decoration: none;
-
+  float: left;
 }
 
 
 .sidebarContainer ul li a, a:visited {
     color: white;
     text-decoration: none;
-}
-
-
-.toggleSidebar {
-  position: absolute;
-  left: 230px;
-  top: 20px;
-  color: black;
+    display: block;
+    /* ^now the whole block is linkable. */
 }
 
 .active {
-  position: absolute;
+  position: relative;
   left: 30px;
   top: 20px;
   color: black;
+  display: block;
+  margin-right: 800px !important;
+  overflow-x: hidden;
+  float: left !important;
+  z-index: 2;
 }
+
+.toggleSidebar {
+  position: relative;
+  display: block;
+  float: left;
+  left: 230px;
+  top: 20px;
+  color: black;
+  margin-right: 200px;
+  z-index: 2;
+}
+
+
 
 .toggleSidebar span, .active span {
   display: block;
@@ -97,11 +111,15 @@ body {
   height: 5px;
   background-color: #151719;
   margin: 3px 0px;
+  margin-right: 200px;
 }
 
 .hiddenText ul li a {
+  display: block;
   visibility: hidden;
 }
+
+/* SEND TO PROPS AND FLOAT LEFT */
 
 
 
@@ -123,6 +141,9 @@ body {
   box-shadow: 10px 5px 5px #A4A5AE;
   word-wrap: break-word;
   overflow: auto;
+  position: relative;
+  z-index: -2;
+
   /* background-attachment: local;
   background-image:
   linear-gradient(to right, white 10px, transparent 10px),

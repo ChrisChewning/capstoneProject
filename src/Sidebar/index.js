@@ -23,6 +23,7 @@ toggle() {
 render(){
   return (
 
+    <div className="wrapper">
     <div className={this.state.toggle ? 'sidebarContainer': 'hiddenText'} onClick={this.toggle}>
   <div className={this.state.toggle ? 'toggleSidebar' : 'active'}
                    onClick={this.toggle}>
@@ -33,8 +34,10 @@ render(){
     <ul>
       <li><Link to='home'>Home</Link></li>
       <li><Link to='/to-dos'>To-Do List</Link></li>
-      <li><Link to='notepad'>Notepad</Link></li>
+      <li><Link to='/notepad'>Notepad</Link></li>
+      <li><Link to='calendar'>Calendar</Link></li>
     </ul>
+</div>
 </div>
 )}
 

@@ -1,83 +1,151 @@
 import React, {Component} from 'react';
 import {Button, Form, Icon, Row, Input} from 'react-materialize'
+import firebase from 'firebase';
+import {connect} from 'react-firebase';
 
 class ToDoList extends Component {
-  constructor(){
+  constructor() {
     super();
     this.state = {
-      notepad: '',
-      timeout: null,
-    value: '',
-    saved: false,
+      due: '',
+      text: '',
+      notes: []
+    }
+    this.newNote = this.newNote.bind(this); //react docs best-practice.
+    this.postNote = this.postNote.bind(this);
+    this.deleteNote = this.deleteNote.bind(this);
+    this.editNote = this.editNote.bind(this);
+    this.closeNote = this.closeNote.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentDidMount() {
+    firebase.database().ref().on('value', (res) => {
+      console.log(res.val());
+    });
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
+
+  newNote(e) {
+    e.preventDefault();
+    console.log('newNote:', this.newNote);
+  }
+
+  postNote(e) { //onSubmit fn.
+    e.preventDefault();
+    // console.log('post:', this.postNote);
+    const notesRef = firebase.database().ref('notes'); //creates space in firebase db. note: there are no objects in firebase.
+    const note = {
+      due: this.state.due,
+      text: this.state.text
+    }
+    notesRef.push(note); //sends a copy of our object to store in Firebase.
+    this.setState({due: '', text: ''}); //set the state back to empty.
+  }
+
+  //START tracking notes when page loads.
+  componentDidMount() {
+    const notesRef = firebase.database().ref('notes');
+    notesRef.on('value', (snapshot) => { //overview of notes in db.
+      let notes = snapshot.val(); //listener
+      let newState = []; //instatiate & populate with our data.
+      for (let note in notes) { //loop over & push results into one object.
+        newState.push({id: note, due: notes[note].due, text: notes[note].text});
       }
-}
+      this.setState({ //update state with all the notes in our db.
+        notes: newState
+      });
+    });
+  }
 
-handleChange = (e) => {
-  this.setState({
-    [e.target.name]: e.target.value
-  });
-}
+  removeNote(noteId) {
+    const noteRef = firebase.database().ref(`/notes/${noteId}`);
+    noteRef.remove();
+  }
 
+  deleteNote(e) {
+    // e.preventDefault();
+    console.log('delete:', this.deleteNote);
+  }
 
-// const SaveMessage = ({visible}) => <div className={'saved' + (visible ? ' saved-visible' : '')}><p>Saved Successfully</p></div>
-//
-//
-// const resetTimeout = (id, newID) => {
-//   clearTimeout(id)
-//   return newID
-// }
-//
-// editValue = value => {
-//   this.setState({timeout: resetTimeout(this.state.timeout, setTimeout(this.saveValue, 400)), value: value})
-// };
-//
-// saveValue = () => {
-//     this.setState({...this.state, saved: true})
-//     setTimeout(() => this.setState({...this.state, saved: false}), 1000)
-//   };
+  editNote(e) {
+    e.preventDefault();
+    console.log('edit:', this.editNote);
+  }
 
-
-//ISSUE 1: AUTOSAVE
-//link: https://codepen.io/Lance-Jernigan/pen/qrxmpp
-
-
-
-
+  closeNote(e) {
+    e.preventDefault();
+    console.log('close:', this.closeNote);
+  }
 
   render() {
-
-
-
-
-
-
-
-    console.log(this.state.notepad);
-    return (
-      <div className='notepadContainer'>
-
-
-{/* ISSUE 2 */}
-
-{/* docs: You must have an .input-field div wrapping your input and label. This is only used in our Input and Textarea form elements. */}
-
-{/* LINK: https://materializecss.com/text-inputs.html */}
-{/* jQuery code: {/* $(".materialize-textarea").trigger("autoresize") */}
-
-
-      <div class="row">
-    <form class="col s12" className='notepad' method='post'>
-      <div class="row">
-        <div class="input-field col s12">
-
-          <textarea id="notepadTA" class="materialize-textarea"></textarea>
-          <label for="textarea1" class='active'>Don't forget to wait for your note to save!</label>
-
-
-        </div>
+    console.log('this is due:', this.state.due);
+    console.log('this is text:', this.state.text);
+    console.log('notes state:', this.state.notes);
+    return (<div className='notesContainer'>
+      <div onClick={this.newNote}>
+        <Icon className='addNewNote'>add_to_photos</Icon>
       </div>
-    </form>
-  </div>
+
+      <div className='note'>
+        <form onSubmit={this.postNote}>
+          {/* form onSubmit={this.postNote}className='note'> */}
+          <div className='notesIcons'>
+            <div onClick={this.deleteNote}>
+              <Icon extra-small="extra-small" onClick={this.deleteNote}>delete</Icon>
+            </div>
+            <div onClick={this.editNote}>
+              <Icon extra-small="extra-small">edit</Icon>
+            </div>
+            <div onClick={this.closeNote}>
+              <Icon extra-small="extra-small">close</Icon>
+            </div>
+          </div>
+
+          <Row>
+            <Input s={8} type='text' className='noteTitle' name='due' onChange={this.handleChange} value={this.state.due}  label='Due by:'/>
+          </Row>
+
+          <Row>
+            <Input s={12} className='noteText' name='text' onChange={this.handleChange} value={this.state.text}   label="What:"/>
+          </Row>
+
+          <Button waves='light' type='submit' value='add new note'>Submit</Button>
+        </form>
+      </div>
+
+      <section className='display-note'>
+        <div className="wrapper">
+          <ul>
+            {
+              this.state.notes.map(note => {
+                return (<li key={note.id}>
+                  <div className="note">
+
+                    <div>
+                      <Button onClick={() => this.removeNote(note.id)}>delete</Button>
+                    </div>
+
+                    {/* <button>
+                          <Icon extra-small onClick={this.deleteNote}>delete</Icon>
+                      </button> */
+                    }
+
+                    <div className='noteTitle'>{note.due}</div>
+                    <div className='noteText'>{note.text}</div>
+
+                  </div>
+                </li>)
+              })
+            }
+          </ul>
+        </div>
+      </section>
 
     </div>)
   }
