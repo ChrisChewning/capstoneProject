@@ -10,8 +10,8 @@ class Notepad extends Component {
     this.state = {
       notepad: '',
       timeout: null,
-    value: '',
-    saved: false,
+      value: '',
+      saved: false,
       }
 }
 
@@ -74,12 +74,12 @@ componentDidMount() {
 {/* jQuery code: {/* $(".materialize-textarea").trigger("autoresize") */}
 
 
+<div class="row">
       <div class="row">
     <form class="col s12" className='notepad' onSubmit={this.handleSave}>
       <div class="row">
         <div class="input-field col s12">
-
-          <textarea id="notepadTA" class="materialize-textarea"></textarea>
+          <textarea style={{ height: '80vh' }} id="textarea1" class="materialize-textarea"></textarea>
           <label for="textarea1" class='active'>Don't forget to wait for your note to save!</label>
         </div>
       </div>
@@ -87,8 +87,10 @@ componentDidMount() {
     </form>
   </div>
 
-    </div>)
-  }
-}
+    </div>
+  </div>
+  )}
 
+
+}
 export default Notepad;

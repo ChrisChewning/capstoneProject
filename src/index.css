@@ -216,13 +216,15 @@ span {
   width: 50vw;
   margin-left: 25%;
   margin-top: 1%;
-  /* height: 75vh; */
-  /* align-items: center; */
+
   background-color: #fffff4 !important;
   color: black !important;
   font-size: 2em;
   box-shadow: 10px 5px 5px #A4A5AE;
   word-wrap: break-word;
+
+
+
   /* overflow: auto; */
   /* position: absolute; */
   /* z-index: -2; */
