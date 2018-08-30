@@ -11,14 +11,10 @@ constructor(){
   }
 }
 
-
-
 toggle() {
    this.setState({toggle: !this.state.toggle});
    console.log('toggle function working:', this.state.toggle);
  }
-
-
 
 render(){
   return (
@@ -36,8 +32,6 @@ render(){
     <span></span>
     <span></span>
 </div>
-
-
 
     <ul>
       <li><Link to='/home' className=''>Home</Link></li>

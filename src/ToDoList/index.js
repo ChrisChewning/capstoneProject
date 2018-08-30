@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Button, Form, Icon, Row, Input} from 'react-materialize'
 import firebase from 'firebase';
 import {connect} from 'react-firebase';
+import Modal from 'react-modal';
 
 class ToDoList extends Component {
   constructor() {
@@ -9,13 +10,11 @@ class ToDoList extends Component {
     this.state = {
       due: '',
       text: '',
-      notes: []
+      notes: [],
+      modalIsOpen: false,
     }
     this.newNote = this.newNote.bind(this); //react docs best-practice.
     this.postNote = this.postNote.bind(this);
-    // this.deleteNote = this.deleteNote.bind(this);
-    // this.editNote = this.editNote.bind(this);
-    // this.closeNote = this.closeNote.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -36,6 +35,7 @@ class ToDoList extends Component {
 //=================  NEW NOTE POPS FROM TOP RIGHT TO INPUT DATA. ==============
   newNote(e) {
     e.preventDefault();
+    this.setState({modalIsOpen: true});
     console.log('newNote:', this.newNote);
   }
 
@@ -88,11 +88,15 @@ class ToDoList extends Component {
         <Button className='addNewNote' onClick={this.newNote}>New Note</Button>
       </div>
 
-      <div className='note'>
+
+<div className='note'>
+      <Modal
+        isOpen={this.state.modalIsOpen}
+        onRequestClose={this.closeModal}
+        contentLabel="Example Modal"
+        >
+          <button onClick={this.closeModal}>close</button>
         <form onSubmit={this.postNote}>
-
-
-{/* HOW TO TIE THIS TO this.newNote */}
           <Row>
             <Input s={8} type='text' className='noteTitle' name='due' onChange={this.handleChange} value={this.state.due}  label='Due by:'/>
           </Row>
@@ -103,7 +107,12 @@ class ToDoList extends Component {
 
           <Button waves='light' type='submit' value='add new note'>Submit</Button>
         </form>
+      </Modal>
       </div>
+
+
+
+
 
       <section className='display-note'>
         <div className="wrapper">
@@ -111,7 +120,6 @@ class ToDoList extends Component {
             {
               this.state.notes.map(note => {
                 return (<li key={note.id}>
-
                   <div className="note">
                     <div className='noteTitle'>{note.due}</div>
                     <div className='noteText'>{note.text}</div>

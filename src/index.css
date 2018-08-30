@@ -92,9 +92,6 @@ body {
   display: inline;
 }
 
-/* .noteNew {
-  visibility: hidden;
-} */
 
 
 
@@ -163,11 +160,17 @@ body {
 } */
 
 
-.closed ul li, li:hover {
-  background-color: pink;
-  color: black !important;
+.open ~ ul li:hover {
+  background-color: white;
 }
 
+.open ~ ul li:hover a {
+  color: black;
+}
+
+/* .closed ul li, a:hover {
+  color: black;
+} */
 
 /* HAMBURGER */
 .open {
@@ -193,8 +196,7 @@ span {
 }
 
 .hiddenText ul li a {
-  display: run-in;
-  visibility: hidden;
+  display: none;
 }
 
 /* SEND TO PROPS AND FLOAT LEFT */
