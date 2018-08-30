@@ -12,7 +12,7 @@ import Sidebar from './Sidebar';
 import Home from './Home';
 import Notepad from './Notepad';
 import ToDoList from './ToDoList';
-import Notes from './Notes';
+// import Notes from './Notes';
 import Calendar from './Calendar';
 import Login from './Login';
 import Logout from './Logout';
@@ -62,6 +62,7 @@ import Logout from './Logout';
   var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
   // The start method will wait until the DOM is loaded.
+  //THIS ui.start is looking for the id firebaseui-auth-container. You can put this in any file. 
   ui.start("#firebaseui-auth-container", uiConfig);
 
 

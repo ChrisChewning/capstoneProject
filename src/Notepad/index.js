@@ -3,6 +3,8 @@ import {Button, Form, Icon, Row, Input} from 'react-materialize'
 import firebase from 'firebase';
 import {connect} from 'react-firebase';
 
+import Firebase from '../Firebase';
+
 
 class Notepad extends Component {
   constructor(){
@@ -25,13 +27,24 @@ handleChange = (e) => {
 handleSave = (e) => {
   e.preventDefault();
   console.log('handleSave is clicked');
-  const notepadRef = firebase.database().ref('notepad');
+  // const notepadRef = firebase.database().ref('notepad');
 }
 
-//
-componentDidMount() {
 
-}
+// FROM TO-DO NOTES
+// postNote(e) { //onSubmit fn.
+// e.preventDefault();
+// const notesRef = firebase.database().ref('notes'); //Listener.
+// const note = {
+//   due: this.state.due,
+//   text: this.state.text
+// }
+// notesRef.push(note); //sends a copy of our object to store in Firebase.
+// this.setState({due: '', text: ''}); //set the state back to empty.
+// }
+
+
+
 
 
 

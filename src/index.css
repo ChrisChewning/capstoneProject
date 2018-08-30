@@ -7,10 +7,9 @@
 body {
   background-image: url("./img/backgroundImage.jpg");
   background-size: cover;
-  /* opacity: .2; */
-  /* background-size: no repeat; */
-
 }
+
+/* HOME */
 
 .homeWrapper {
   display: flex;
@@ -29,8 +28,8 @@ body {
 }
 
 .homeImg {
-  width: 50%;
-  height: 50%;
+  width: 66.6%;
+  height: 66.6%;
 }
 
 .googleBtns {
@@ -64,10 +63,10 @@ body {
   right: 20;
 }
 
+
 /* EACH NOTE YOU ADD ON SUBMIT */
 .note {
   background-color: #F6F7EB;
-  /* background-color: #7fb597; */
   width: 30vw;
   margin-left: 35%;
   margin-bottom: 1%;
@@ -116,7 +115,6 @@ body {
   border: 1px solid rgba(100,100,100, 0.3);
   width: 100%;
   text-decoration: none;
-  /* float: right; */
   z-index: 2;
 }
 
@@ -125,8 +123,6 @@ body {
     color: white;
     text-decoration: none;
     display: block;
-    /* z-index: 2; */
-    /* ^now the whole block is linkable. */
 }
 
 /* NAVBAR CLOSED  */
@@ -134,31 +130,9 @@ body {
   position: relative;
   left: 30px;
   top: 20px;
-  /* left: 20%;
-  top: 20%; */
-
-  /* color: black; */
   display: block;
-  /* margin-right: 800px !important; */
-  /* overflow-x: hidden;
-  float: left !important; */
   z-index: 0;
 }
-
-/* .closed ul li a, a:hover{
-  visibility: hidden;
-} */
-
-/* interactivity */
-/* .sidebarContainer .active {
-  background-color: white;
-} */
-
-/* .sidebarContainer ul li a, a.active {
-  color: black;
-  background-color: white;
-} */
-
 
 .open ~ ul li:hover {
   background-color: white;
@@ -168,10 +142,6 @@ body {
   color: black;
 }
 
-/* .closed ul li, a:hover {
-  color: black;
-} */
-
 /* HAMBURGER */
 .open {
   position: relative;
@@ -179,9 +149,7 @@ body {
   float: left;
   left: 200px;
   top: 20px;
-
   color: black;
-  /* margin-right: 20%; */
   z-index: 2;
 }
 
@@ -199,8 +167,6 @@ span {
   display: none;
 }
 
-/* SEND TO PROPS AND FLOAT LEFT */
-
 
 
 /* NOTEPAD PAGE */
@@ -216,28 +182,9 @@ span {
   width: 50vw;
   margin-left: 25%;
   margin-top: 1%;
-
   background-color: #fffff4 !important;
   color: black !important;
   font-size: 2em;
   box-shadow: 10px 5px 5px #A4A5AE;
   word-wrap: break-word;
-
-
-
-  /* overflow: auto; */
-  /* position: absolute; */
-  /* z-index: -2; */
-
-  /* background-attachment: local;
-  background-image:
-  linear-gradient(to right, white 10px, transparent 10px),
-  linear-gradient(to left, white 10px, transparent 10px),
-  repeating-linear-gradient(white, white 30px, #ccc 30px, #ccc 31px, white 31px);
-  line-height: 31px;
-  padding: 8px 10px; */
 }
-
-/* .trigger {
-resize:  both;
-} */

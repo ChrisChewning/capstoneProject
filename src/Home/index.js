@@ -12,9 +12,9 @@ class Home extends Component {
     console.log(date);
     return(
       <div>
-        <Moment format="MM/DD/YYYY" className='homeDate'></Moment>
+        <Moment format="dddd, MMMM Do" className='homeDate'></Moment>
       <div className='homeWrapper'>
-
+        <div className='googleBtns' id="firebaseui-auth-container"></div>
         <img className='homeImg' src="https://source.unsplash.com/daily?nature/" />
       </div>
         <br/>
