@@ -7,7 +7,6 @@ import firebaseui from 'firebaseui';
 
 import { connect } from 'react-firebase';
 
-// import { Route, Redirect, Switch } from 'react-router-dom';
 import {Route, Redirect, Switch} from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Home from './Home';
@@ -15,10 +14,11 @@ import Notepad from './Notepad';
 import ToDoList from './ToDoList';
 import Notes from './Notes';
 import Calendar from './Calendar';
+import Login from './Login';
+import Logout from './Logout';
 
-// firebase.initializeApp(firebaseConfig);
 
-// firebase.initializeApp(environment.firebaseConfig);
+// =========================  FIREBASE ========================
 
   // Initialize Firebase
   const config = {
@@ -134,16 +134,15 @@ import Calendar from './Calendar';
 
 
 
-
+// ======================= ROUTES & RENDERS ======================
 
 class App extends Component {
   render() {
     return (
       <div>
         < Sidebar />
-
         <Switch>
-          <Route exact path='/home' componenet = {Home} />
+          <Route exact path='/home' component = {Home} />
           <Route exact path="/to-dos" component = {ToDoList} />
           <Route exact path='/notepad' component = {Notepad} />
           <Route exact path='/calendar' component = {Calendar} />
@@ -154,8 +153,6 @@ class App extends Component {
     );
   }
 }
-
-
 
 
 

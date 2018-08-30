@@ -61,13 +61,6 @@ componentDidMount() {
 
 
   render() {
-
-
-
-
-
-
-
     console.log(this.state.notepad);
     return (
       <div className='notepadContainer'>

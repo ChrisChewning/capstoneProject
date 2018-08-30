@@ -12,40 +12,85 @@ body {
 
 }
 
+.homeWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.homeDate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 3em;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.homeImg {
+  width: 50%;
+  height: 50%;
+}
+
+.googleBtns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2%;
+}
+
+.logoutBtn {
+  margin-left: 1%;
+  color: blue;
+}
+
 
 /* NOTE COMPONENT STYLING */
 
+/* BUTTON TOP RIGHT */
 .addNewNote {
   position: fixed;
   top: 0;
   right: 0;
-  font-size: 3em;
+  font-size: 1em;
+  margin: 2%;
 }
 
+/*  */
+.postedNote {
+  position: fixed;
+  top: 20;
+  right: 20;
+}
 
-
+/* EACH NOTE YOU ADD ON SUBMIT */
 .note {
   background-color: #F6F7EB;
   /* background-color: #7fb597; */
   width: 30vw;
   margin-left: 35%;
+  margin-bottom: 1%;
+  display: inline-block;
   border: 1px solid black;
   box-shadow: 10px 5px 5px #A4A5AE;
   padding: 20px;
   font-size: 2em;
-  /* position: relative; */
-  /* z-index:  */
 }
+
 .notesContainer {
   /* background-color: red; */
   /* position: absolute; */
 }
+
 .notesIcons {
     display: flex;
     justify-content: flex-end;
 }
 
-
+.displayNotes {
+  display: inline;
+}
 
 /* .noteNew {
   visibility: hidden;
@@ -116,10 +161,6 @@ body {
   color: black;
   background-color: white;
 } */
-
-
-
-
 
 
 .closed ul li, li:hover {
