@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import GoogleLogin from 'react-google-login';
-import { GoogleLogout } from 'react-google-login';
+import { GoogleLogin } from 'react-google-login';
 // import { fire, GoogleProvider } from './App';
 
 
@@ -17,11 +17,11 @@ class Login extends Component {
 //     })
 // }
     return(
-   <GoogleLogout
+   <GoogleLogin
      buttonText="Login"
      // onLogoutSuccess={logout}
    >
-   </GoogleLogout>
+   </GoogleLogin>
 )
 };
 }

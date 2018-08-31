@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import firebase from 'firebase';
-import firebaseui from 'firebaseui';
+// import firebaseui from 'firebaseui';
 
 import { connect } from 'react-firebase';
 
@@ -20,28 +20,28 @@ import Logout from './Logout';
 
 // =========================  FIREBASE ========================
 
-  // Initialize Firebase
-  const config = {
-      apiKey: "AIzaSyAzFb_TW6s_2DvByFaZrwUpLKIC7rHc10Y",
-      authDomain: "capstone-chewning.firebaseapp.com",
-      databaseURL: "https://capstone-chewning.firebaseio.com",
-      projectId: "capstone-chewning",
-      storageBucket: "capstone-chewning.appspot.com",
-      messagingSenderId: "240236777398",
-
-      clientId: "894637525353-4dvg87eler6ulqn5f5upchnpjg60acu8.apps.googleusercontent.com",
-
-      scopes: [
-                 "email",
-                 "profile",
-                 "https://www.googleapis.com/auth/calendar"
-        ],
-        discoveryDocs: [
-    "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"
-    ]
-
-  };
-  firebase.initializeApp(config);
+  // // Initialize Firebase
+  // const config = {
+  //     apiKey: "AIzaSyAzFb_TW6s_2DvByFaZrwUpLKIC7rHc10Y",
+  //     authDomain: "capstone-chewning.firebaseapp.com",
+  //     databaseURL: "https://capstone-chewning.firebaseio.com",
+  //     projectId: "capstone-chewning",
+  //     storageBucket: "capstone-chewning.appspot.com",
+  //     messagingSenderId: "240236777398",
+  //
+  //     clientId: "894637525353-4dvg87eler6ulqn5f5upchnpjg60acu8.apps.googleusercontent.com",
+  //
+  //     scopes: [
+  //                "email",
+  //                "profile",
+  //                "https://www.googleapis.com/auth/calendar"
+  //       ],
+  //       discoveryDocs: [
+  //   "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"
+  //   ]
+  //
+  // };
+  // firebase.initializeApp(config);
 
   // //Firebase UI
   // var uiConfig = {

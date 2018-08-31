@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { GoogleLogin } from 'react-google-login';
 import Login from '../Login';
-import Logout from '../Logout';
+import AuthButtons from '../Logout';
 import Moment from 'react-moment';
 
 class Home extends Component {
@@ -18,15 +18,16 @@ class Home extends Component {
         <img className='homeImg' src="https://source.unsplash.com/daily?nature/" />
       </div>
         <br/>
-        <div className='googleBtns'>
-          <div>
-        < Login />
+
+         <div className='googleBtns'>
+        <AuthButtons />
       </div>
-        <div className='logoutBtn'>
+        {/* < Login /> */}
+      </div>
+         /* <div className='logoutBtn'>
         < Logout />
-      </div>
-      </div>
-      </div>
+      </div> */
+      // </div>
   )
 }
 }

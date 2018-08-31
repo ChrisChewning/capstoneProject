@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import {Button, Form, Icon, Row, Input} from 'react-materialize'
-import firebase from 'firebase';
+// import firebase from 'firebase';
+import firebase from '../Fire';
 import {connect} from 'react-firebase';
 import Firebase  from '../Firebase';
 import Modal from 'react-modal';
+
 
 class ToDoList extends Component {
   constructor() {
