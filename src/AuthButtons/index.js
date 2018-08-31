@@ -23,9 +23,7 @@ class AuthButtons extends Component {
 handleChange(e) {
   /* ... */
 }
-logout() {
-  // we will add the code for this in a moment, but need to add the method now or the bind will throw an error
-}
+
 login() {
   auth.signInWithPopup(provider)
     .then((result) => {
@@ -79,6 +77,19 @@ render() {
 )}
 
 
+/* <div className="wrapper">
+  {/* <GoogleLogin
+    buttonText="Login"
+</GoogleLogin> */
+
+// {this.state.user ?
+//   <GoogleLogin buttonText="login" onClick={this.logout}>Log Out</GoogleLogin>
+//   :
+//   <GoogleLogout buttonText="logout" onClick={this.login}>Log In</GoogleLogout>
+// }
+// </div>
+// )}
+
 
 //   render() {
 //     return(
@@ -92,4 +103,5 @@ render() {
 // )
 // };
 }
+
 export default AuthButtons;

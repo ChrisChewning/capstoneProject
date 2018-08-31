@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { GoogleLogin } from 'react-google-login';
 import Login from '../Login';
-import AuthButtons from '../Logout';
+import AuthButtons from '../AuthButtons';
 import Moment from 'react-moment';
 
 class Home extends Component {
