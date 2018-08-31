@@ -14,7 +14,7 @@ class Home extends Component {
       <div>
         <Moment format="dddd, MMMM Do" className='homeDate'></Moment>
       <div className='homeWrapper'>
-        <div className='googleBtns' id="firebaseui-auth-container"></div>
+        <div id="firebaseui-auth-container"></div>
         <img className='homeImg' src="https://source.unsplash.com/daily?nature/" />
       </div>
         <br/>

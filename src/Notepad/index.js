@@ -78,7 +78,6 @@ handleSave = (e) => {
     return (
       <div className='notepadContainer'>
 
-
 {/* ISSUE 2 */}
 
 {/* docs: You must have an .input-field div wrapping your input and label. This is only used in our Input and Textarea form elements. */}

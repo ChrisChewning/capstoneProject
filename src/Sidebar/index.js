@@ -22,7 +22,7 @@ render(){
     <div className="wrapper">
 
       {/* this div needs everything in it? */}
-    <div className={this.state.toggle ? 'sidebarContainer': 'hiddenText'} onClick={this.toggle}>
+    <div className={this.state.toggle ? 'sidebar': 'hiddenText'} onClick={this.toggle}>
 
 
 {/* this open & closed div needs the burger in it. */}
