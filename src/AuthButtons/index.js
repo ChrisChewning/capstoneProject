@@ -64,7 +64,7 @@ logout() {
 
 render() {
   return(
-  <div className="wrapper">
+  <div className="wrapperButtons">
     {/* <GoogleLogin
       buttonText="Login"
 </GoogleLogin> */}

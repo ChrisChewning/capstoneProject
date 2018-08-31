@@ -188,3 +188,12 @@ span {
   box-shadow: 10px 5px 5px #A4A5AE;
   word-wrap: break-word;
 }
+
+
+
+button {
+  padding: 15px;
+  background-color: red;
+  color: white;
+  font-size: 2em;
+}
