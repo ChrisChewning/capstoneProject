@@ -12,6 +12,7 @@
     "moment": "^2.22.2",
     "npm": "^6.4.0",
     "react": "^16.4.2",
+    "react-big-calendar": "^0.19.2",
     "react-dom": "^16.4.2",
     "react-firebase": "^2.2.8",
     "react-google-login": "^3.2.1",

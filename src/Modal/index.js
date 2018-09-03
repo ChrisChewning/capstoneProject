@@ -2,7 +2,7 @@
 // import Modal  from 'react-modal;'
 // import {Button, Form, Icon, Row, Input} from 'react-materialize'
 //
-// class Model extends Component {
+// class Modal extends Component {
 //   constructor{
 //   super()
 //

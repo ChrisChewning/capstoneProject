@@ -15,7 +15,7 @@ import ToDoList from './ToDoList';
 // import Notes from './Notes';
 import Calendar from './Calendar';
 import Login from './Login';
-import Logout from './Logout';
+// import Logout from './Logout';
 
 
 // =========================  FIREBASE ========================

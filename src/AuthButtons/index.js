@@ -5,6 +5,9 @@ import firebaseui from 'firebaseui';
 // import firebase, { auth, provider } from 'firebase';
 import firebase, { auth, provider }  from '../Fire';
 
+//LINK https://firebase.google.com/docs/auth/web/google-signin
+
+
 class AuthButtons extends Component {
 
   constructor() {
@@ -28,38 +31,16 @@ login() {
   auth.signInWithPopup(provider)
     .then((result) => {
       const user = result.user;
-      this.setState({
-        user
-      });
+      this.setState({user});
     });
 }
-
 
 logout() {
   auth.signOut()
     .then(() => {
-      this.setState({
-        user: null
-      });
+      this.setState({user: null});
     });
 }
-
-//OPTION 1
-  // logOut=()=> {
-  //   firebase.auth().signOut().then((user)=> {
-  //     this.setState({items:null})
-  //   })
-  // }
-
-
-  // OPTION 2
-  //https://firebase.google.com/docs/auth/web/google-signin
-    // firebase.auth().signOut().then(function() {
-    //   // Sign-out successful.
-    // }).catch(function(error) {
-    //   // An error happened.
-    // });
-
 
 
 render() {
@@ -69,9 +50,9 @@ render() {
       buttonText="Login"
 </GoogleLogin> */}
   {this.state.user ?
-    <button onClick={this.logout}>Log Out</button>
+    <button className='logs' onClick={this.logout}>Log Out</button>
     :
-    <button onClick={this.login}>Log In</button>
+    <button className='logs' onClick={this.login}>Log In</button>
   }
 </div>
 )}

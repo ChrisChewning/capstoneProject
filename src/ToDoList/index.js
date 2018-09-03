@@ -28,9 +28,7 @@ class ToDoList extends Component {
   }
 
   handleChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
+    this.setState({[e.target.name]: e.target.value});
   }
 
 
@@ -42,7 +40,12 @@ class ToDoList extends Component {
     console.log('newNote:', this.newNote);
   }
 
-
+  //=========================  CLOSE NOTE.  ======================
+  closeModal(e) {
+    e.preventDefault();
+    this.setState({modalIsOpen: false})
+    console.log('modalIsOpen:', this.state.modalIsOpen);
+  }
 
 //======================  POST & CREATE SPACE IN FIREBASE.  ===================
 
@@ -56,6 +59,7 @@ class ToDoList extends Component {
     }
     notesRef.push(note); //sends a copy of our object to store in Firebase.
     this.setState({due: '', text: ''}); //set the state back to empty.
+    this.setState({modalIsOpen: false})
   }
 
   //=================  LOAD ALL THE NOTES when the page loads.  ==============
@@ -73,6 +77,8 @@ class ToDoList extends Component {
       });
     });
   }
+
+
 
   //=================  DELETE THE NOTES FROM FIREBASE.  ==============
   removeNote(noteId) {
@@ -96,9 +102,10 @@ class ToDoList extends Component {
       <Modal
         isOpen={this.state.modalIsOpen}
         onRequestClose={this.closeModal}
-        contentLabel="Example Modal"
+        contentLabel="To Do Modal"
         >
           <button onClick={this.closeModal}>close</button>
+
         <form onSubmit={this.postNote}>
           <Row>
             <Input s={8} type='text' className='noteTitle' name='due' onChange={this.handleChange} value={this.state.due}  label='Due by:'/>
@@ -108,7 +115,7 @@ class ToDoList extends Component {
             <Input s={12} className='noteText' name='text' onChange={this.handleChange} value={this.state.text}   label='What:'/>
           </Row>
 
-          <Button waves='light' type='submit' value='add new note'>Submit</Button>
+          <Button waves='light' type='submit' value='add new note'>Let's Do It!</Button>
         </form>
       </Modal>
       </div>

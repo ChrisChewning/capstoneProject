@@ -190,8 +190,7 @@ span {
 }
 
 
-
-button {
+.logs {
   padding: 15px;
   background-color: red;
   color: white;
