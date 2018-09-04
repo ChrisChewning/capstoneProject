@@ -13,27 +13,29 @@ BigCalendar.momentLocalizer(moment); //could also use globalizeLocalizer
 
 
 class Calendar extends Component {
-  constructor(){
-    super();
-    this.state = {
-      }
-}
-
-
 
   render() {
     return (
       <div>
-      <h1>hi</h1>
       <BigCalendar
-        style={{height: '420px'}}
+        style={{height: '420px', width: '420px'}}
         events={['month', 'day', 'agenda']}
         // events={myEventsList}
-      startAccessor='startDate'
-      endAccessor='endDate'
+      // startAccessor='startDate'
+      // endAccessor='endDate'
       />
     </div>
 )}
 }
+
+// const Calendar = props => (
+//   <div>
+//     <BigCalendar
+//       // events={myEventsList}
+//       startAccessor='startDate'
+//       endAccessor='endDate'
+//     />
+//   </div>
+// );
 
 export default Calendar;

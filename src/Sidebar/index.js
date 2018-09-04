@@ -28,9 +28,14 @@ render(){
 {/* this open & closed div needs the burger in it. */}
   <div className={this.state.toggle ? 'open' : 'closed'}
                    onClick={this.toggle}>
-    <span></span>
-    <span></span>
-    <span></span>
+    <h6></h6>
+    <h6></h6>
+    <h6></h6>
+
+
+
+
+
 </div>
 
     <ul>

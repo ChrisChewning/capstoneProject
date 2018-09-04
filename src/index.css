@@ -154,7 +154,18 @@ body {
 }
 
 
-span {
+/* SPAN CONFLICTS WITH THE CALENDAR */
+
+/* .burgerTime {
+  display: block;
+  width: 30px;
+  height: 5px;
+  background-color: #151719;
+  margin: 3px 0px;
+  margin-right: 200px;
+} */
+
+h6 {
   display: block;
   width: 30px;
   height: 5px;
@@ -162,6 +173,7 @@ span {
   margin: 3px 0px;
   margin-right: 200px;
 }
+
 
 .hiddenText ul li a {
   display: none;
