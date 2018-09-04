@@ -154,16 +154,7 @@ body {
 }
 
 
-/* SPAN CONFLICTS WITH THE CALENDAR */
-
-/* .burgerTime {
-  display: block;
-  width: 30px;
-  height: 5px;
-  background-color: #151719;
-  margin: 3px 0px;
-  margin-right: 200px;
-} */
+/* SPAN conflicted with the calendar's preset CSS. Changed to h6. */
 
 h6 {
   display: block;

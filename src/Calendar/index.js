@@ -18,7 +18,7 @@ class Calendar extends Component {
     return (
       <div>
       <BigCalendar
-        style={{height: '420px', width: '420px'}}
+        style={{height: '800px', width: '800px', margin: '0px 300px'}}
         events={['month', 'day', 'agenda']}
         // events={myEventsList}
       // startAccessor='startDate'
