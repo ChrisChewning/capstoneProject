@@ -78,6 +78,7 @@ class ToDoList extends Component {
     noteRef.remove();
   }
 
+  //
 
   //======================  RENDER YOUR FORM.  ============================
 

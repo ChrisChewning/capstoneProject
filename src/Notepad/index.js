@@ -29,16 +29,23 @@ handleChange = (e) => {
 }
 
 
-
+//UPDATES
 handleSave(e) {
   e.preventDefault();
+
+
+
   console.log('handleSave is clicked');
   const notepadRef = firebase.database().ref('notepadNotes'); //ref method carves out space. 'notepad' is the destination we make in that space.
   const notepad = {notepad: this.state.notepad}; //destructures to send to fb.
-  notepadRef.push(notepad); //sends a copy to Firebase.
+  notepadRef.set(notepad); //.set updates, not adds or creates unique id.
   // this.setState({notepad: notepad}); doesnt work bc state is now an object. ex: notepad: test2
 }
 
+updateNotepad(notepadId) {
+  const notepadRef = firebase.database().ref(`/notepadNotes/${notepadId}`);
+  notepadRef.set();
+}
 
 
 
@@ -74,6 +81,7 @@ console.log(this.state.notepad);
         </div>
       </div>
       <Button type='submit' value='save' className='btnSave'>Save</Button>
+      <Button type='submit' value='update' className='btnSave' onSubmit={this.updateNotepad}>Update</Button>
     </form>
   </div>
 
