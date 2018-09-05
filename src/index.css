@@ -86,6 +86,12 @@ a.yahoo-link, a.outlook-link, a.outlookcom-link, a.apple-link {
   right: 20;
 }
 
+.ReactModal__Content ReactModal__Content--after-open {
+  
+}
+
+
+
 
 /* EACH NOTE YOU ADD ON SUBMIT */
 .note {

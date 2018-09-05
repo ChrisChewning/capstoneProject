@@ -110,7 +110,7 @@ class ToDoList extends Component {
       </div>
 
 
-<div className='note'>
+<div>
       <Modal
         isOpen={this.state.modalIsOpen}
         onRequestClose={this.closeModal}
@@ -123,8 +123,6 @@ class ToDoList extends Component {
         <div className='modal-close'>
   <Button onClick={() => this.setState({modalIsOpen: false})}>X</Button>
 </div>
-
-
 
         <form onSubmit={this.postNote}>
           <Row>
