@@ -50,11 +50,28 @@ body {
 /* BUTTON TOP RIGHT */
 .addNewNote {
   position: fixed;
+  display: block;
   top: 0;
   right: 0;
   font-size: 1em;
   margin: 2%;
+  text-align: center;
 }
+
+#noteBtn {
+  display: block;
+  margin-bottom: 3%;
+}
+
+.react-add-to-calendar a {
+  color: white;
+  margin-top: 2%;
+}
+
+a.yahoo-link, a.outlook-link, a.outlookcom-link, a.apple-link {
+  display: none;
+}
+
 
 /*  */
 .postedNote {
@@ -82,10 +99,10 @@ body {
   /* position: absolute; */
 }
 
-.notesIcons {
+/* .notesIcons {
     display: flex;
     justify-content: flex-end;
-}
+} */
 
 .displayNotes {
   display: inline;
@@ -198,4 +215,32 @@ h6 {
   background-color: red;
   color: white;
   font-size: 2em;
+}
+
+
+
+.rbc-day-bg {
+  background-color: white;
+  color: black;
+  align-items: center;
+  border: 2px solid black;
+  margin-bottom: 5px;
+  /* margin-right: 5px; */
+}
+
+.rbc-row {
+  /* background-color: black; */
+  color: black;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.rbc-row-bg {
+  text-align: left;
+  align-items: left;
+}
+
+.rbc-events-container{
+  background-color: transparent;
 }

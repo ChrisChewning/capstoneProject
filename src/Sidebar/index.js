@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
-
 import { Link } from 'react-router-dom';
 
 class SideBar extends Component {
 constructor(){
   super();
-  this.toggle = this.toggle.bind(this); //what does this mean? doesnt work without it.
+  this.toggle = this.toggle.bind(this);
     this.state = {
       toggle: false,
   }
@@ -18,24 +17,13 @@ toggle() {
 
 render(){
   return (
-
     <div className="wrapper">
-
-      {/* this div needs everything in it? */}
     <div className={this.state.toggle ? 'sidebar': 'hiddenText'} onClick={this.toggle}>
-
-
-{/* this open & closed div needs the burger in it. */}
-  <div className={this.state.toggle ? 'open' : 'closed'}
+    <div className={this.state.toggle ? 'open' : 'closed'}
                    onClick={this.toggle}>
     <h6></h6>
     <h6></h6>
     <h6></h6>
-
-
-
-
-
 </div>
 
     <ul>
@@ -47,7 +35,6 @@ render(){
 </div>
 </div>
 )}
-
 }
 
 export default SideBar;

@@ -5,7 +5,7 @@ import firebase from '../Fire';
 import {connect} from 'react-firebase';
 import Firebase  from '../Firebase';
 import Modal from 'react-modal';
-
+import AddToCalendar from 'react-add-to-calendar';
 
 class ToDoList extends Component {
   constructor() {
@@ -90,11 +90,23 @@ class ToDoList extends Component {
   //======================  RENDER YOUR FORM.  ============================
 
   render() {
+    let event = {
+        title: 'Sample Event',
+        description: 'example',
+        location: 'Austin, TX',
+        startTime: '2018-09-08T20:15:00-04:00',
+        endTime: '2018-09-08T21:45:00-04:00'
+    }
     return (
       <div className='notesContainer'>
+
       {/* <div onClick={this.newNote}> */}
-      <div>
-        <Button className='addNewNote' onClick={this.newNote}>New Note</Button>
+
+      <div className='addNewNote'>
+        <Button onClick={this.newNote} id="noteBtn">New Note</Button>
+        <Button>
+          <AddToCalendar event={event} />
+        </Button>
       </div>
 
 
@@ -119,9 +131,6 @@ class ToDoList extends Component {
         </form>
       </Modal>
       </div>
-
-
-
 
 
       <section className='display-note'>
