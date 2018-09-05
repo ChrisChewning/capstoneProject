@@ -143,7 +143,7 @@ class ToDoList extends Component {
         <div className="wrapper">
           <ul>
             {
-              this.state.notes.map(note => {
+              this.state.notes.reverse().map(note => {
                 return (<li key={note.id}>
                   <div className="note">
                     <div className='noteTitle'>{note.due}</div>
@@ -151,8 +151,6 @@ class ToDoList extends Component {
                     <div>
                       <Button onClick={() => this.removeNote(note.id)}>Delete</Button>
                     </div>
-
-
 
                   </div>
                 </li>)
