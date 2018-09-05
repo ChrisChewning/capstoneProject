@@ -10,12 +10,16 @@ class Notepad extends Component {
     super();
     this.state = {
       notepad: '',
-      timeout: null,
-      saved: false,
       }
-    this.handleChange = this.handleChange.bind(this); //bind so we get access to this.
+    this.handleChange = this.handleChange.bind(this);
     this.handleSave = this.handleSave.bind(this);
+}
 
+//Connects to the firebase backend.
+componentDidMount() {
+  firebase.database().ref().on('value', (res) => {
+    console.log(res.val());
+  });
 }
 
 
@@ -26,64 +30,32 @@ handleChange = (e) => {
 
 
 
-//Connects to the firebase backend.
+handleSave(e) {
+  e.preventDefault();
+  console.log('handleSave is clicked');
+  const notepadRef = firebase.database().ref('notepadNotes'); //ref method carves out space. 'notepad' is the destination we make in that space.
+  const notepad = {notepad: this.state.notepad}; //destructures to send to fb.
+  notepadRef.push(notepad); //sends a copy to Firebase.
+  // this.setState({notepad: notepad}); doesnt work bc state is now an object. ex: notepad: test2
+}
+
+
+
+
 componentDidMount() {
-  firebase.database().ref().on('value', (res) => {
-    console.log(res.val());
+  const notepadRef = firebase.database().ref('notepadNotes');
+  notepadRef.on('value', (snapshot) => { //overview of notes in db.
+    let notepadNotes = snapshot.val(); //listener
+    // let newState = []; //instatiate & populate with our data.
+    // for (let notepad in notepadNotes) { //loop over & push results into one object.
+    //   newState.push({id: notepad});
+// }
+    // this.setState({notepad: notepad});
+  // }
   });
 }
 
 
-
-
-handleSave(e) {
-  e.preventDefault();
-  console.log(this.handleSave, 'handleSave is clicked');
-  const notepadRef = firebase.database().ref('notepadNotes'); //ref method carves out space. 'notepad' is the destination we make in that space.
-
-  const notepad = {notepad: this.state.notepad};
-  notepadRef.push(notepad); //sends a copy to Firebase.
-  // this.setState({notepad: notepad});
-}
-
-
-// FROM TO-DO NOTES
-// postNote(e) { //onSubmit fn.
-// e.preventDefault();
-// const notesRef = firebase.database().ref('notes'); //Listener.
-// const note = {
-//   due: this.state.due,
-//   text: this.state.text
-// }
-// notesRef.push(note); //sends a copy of our object to store in Firebase.
-// this.setState({due: '', text: ''}); //set the state back to empty.
-// }
-
-
-
-
-
-
-// const SaveMessage = ({visible}) => <div className={'saved' + (visible ? ' saved-visible' : '')}><p>Saved Successfully</p></div>
-//
-//
-// const resetTimeout = (id, newID) => {
-//   clearTimeout(id)
-//   return newID
-// }
-//
-// editValue = value => {
-//   this.setState({timeout: resetTimeout(this.state.timeout, setTimeout(this.saveValue, 400)), value: value})
-// };
-// //
-// saveValue = () => {
-//     this.setState({...this.state, saved: true})
-//     setTimeout(() => this.setState({...this.state, saved: false}), 1000)
-//   };
-
-
-//ISSUE 1: AUTOSAVE
-//link: https://codepen.io/Lance-Jernigan/pen/qrxmpp
 
 
 
