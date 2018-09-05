@@ -16,7 +16,7 @@ class ToDoList extends Component {
       text: '',
       notes: [],
     }
-    this.newNote = this.newNote.bind(this); //react docs best-practice.
+    this.newNote = this.newNote.bind(this);
     this.postNote = this.postNote.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -40,16 +40,8 @@ class ToDoList extends Component {
     console.log(this.state.modalIsOpen);
   }
 
-  //=========================  CLOSE NOTE.  ======================
-  // closeModal(e) {
-  //   e.preventDefault();
-  //   this.setState({modalIsOpen: false});
-  //   console.log('modalIsOpen:', this.state.modalIsOpen);
-  // }
-
 //======================  POST & CREATE SPACE IN FIREBASE.  ===================
 
-            //note: there are no objects in firebase.
     postNote(e) { //onSubmit fn.
     e.preventDefault();
     const notesRef = firebase.database().ref('notes'); //Listener.
@@ -59,8 +51,7 @@ class ToDoList extends Component {
     }
     notesRef.push(note); //sends a copy of our object to store in Firebase.
     this.setState({due: '', text: ''}); //set the state back to empty.
-    this.setState({modalIsOpen: false})
-    console.log(this.state.modalIsOpen);
+    this.setState({modalIsOpen: false}) //close the modal.
   }
 
   //=================  LOAD ALL THE NOTES when the page loads.  ==============
@@ -116,9 +107,6 @@ class ToDoList extends Component {
         onRequestClose={this.closeModal}
         contentLabel="ToDoModal"
         >
-          {/* <div>
-          <Button onClick={this.closeModal}>close</Button>
-        </div> */}
 
         <div className='modal-close'>
   <Button onClick={() => this.setState({modalIsOpen: false})}>X</Button>

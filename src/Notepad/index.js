@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Button, Form, Icon, Row, Input} from 'react-materialize'
 import firebase from 'firebase';
 import {connect} from 'react-firebase';
-
 import Firebase from '../Firebase';
 
 
@@ -12,22 +11,39 @@ class Notepad extends Component {
     this.state = {
       notepad: '',
       timeout: null,
-      value: '',
       saved: false,
       }
+    this.handleChange = this.handleChange.bind(this); //bind so we get access to this.
+    this.handleSave = this.handleSave.bind(this);
+
 }
 
+
 handleChange = (e) => {
-  this.setState({
-    [e.target.name]: e.target.value
+  this.setState({[e.target.name]: e.target.value});
+  // computed properties. Link: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names
+}
+
+
+
+//Connects to the firebase backend.
+componentDidMount() {
+  firebase.database().ref().on('value', (res) => {
+    console.log(res.val());
   });
 }
 
 
-handleSave = (e) => {
+
+
+handleSave(e) {
   e.preventDefault();
-  console.log('handleSave is clicked');
-  // const notepadRef = firebase.database().ref('notepad');
+  console.log(this.handleSave, 'handleSave is clicked');
+  const notepadRef = firebase.database().ref('notepadNotes'); //ref method carves out space. 'notepad' is the destination we make in that space.
+
+  const notepad = {notepad: this.state.notepad};
+  notepadRef.push(notepad); //sends a copy to Firebase.
+  // this.setState({notepad: notepad});
 }
 
 
@@ -59,7 +75,7 @@ handleSave = (e) => {
 // editValue = value => {
 //   this.setState({timeout: resetTimeout(this.state.timeout, setTimeout(this.saveValue, 400)), value: value})
 // };
-//
+// //
 // saveValue = () => {
 //     this.setState({...this.state, saved: true})
 //     setTimeout(() => this.setState({...this.state, saved: false}), 1000)
@@ -71,38 +87,28 @@ handleSave = (e) => {
 
 
 
-
-
   render() {
-    console.log(this.state.notepad);
+console.log(this.state.notepad);
     return (
       <div className='notepadContainer'>
-
-{/* ISSUE 2 */}
-
-{/* docs: You must have an .input-field div wrapping your input and label. This is only used in our Input and Textarea form elements. */}
-
-{/* LINK: https://materializecss.com/text-inputs.html */}
-{/* jQuery code: {/* $(".materialize-textarea").trigger("autoresize") */}
-
 
 <div class="row">
       <div class="row">
     <form class="col s12" className='notepad' onSubmit={this.handleSave}>
       <div class="row">
         <div class="input-field col s12">
-          <textarea style={{ height: '80vh' }} id="textarea1" class="materialize-textarea"></textarea>
-          <label for="textarea1" class='active'>Don't forget to wait for your note to save!</label>
+          <textarea style={{ height: '80vh' }} id="textarea" onChange={this.handleChange} name="notepad" value={this.state.notepad} class="materialize-textarea"></textarea>
+          <label for="textarea" class='active'>Don't forget to wait for your note to save!</label>
         </div>
       </div>
-      <Button waves='light' type='submit' value='save the note!'>Submit</Button>
+      <Button type='submit' value='save' className='btnSave'>Save</Button>
     </form>
   </div>
 
     </div>
+
   </div>
   )}
-
 
 }
 export default Notepad;
