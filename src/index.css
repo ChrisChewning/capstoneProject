@@ -98,31 +98,23 @@ a.yahoo-link, a.outlook-link, a.outlookcom-link, a.apple-link {
 .note {
   background-color: #F6F7EB;
   width: 30vw;
-  margin-left: 35%;
+  margin-left: 50%;
   margin-bottom: 1%;
-  display: inline-block;
   border: 1px solid black;
   box-shadow: 10px 5px 5px #A4A5AE;
   padding: 20px;
   font-size: 2em;
 }
 
-.notesContainer {
-  /* background-color: red; */
-  /* position: absolute; */
+ul li {
+  display: inline-block;
+  margin: 2%;
 }
 
-/* .notesIcons {
-    display: flex;
-    justify-content: flex-end;
-} */
 
 .displayNotes {
   display: inline;
 }
-
-
-
 
 
 /* SIDEBAR ITSELF */

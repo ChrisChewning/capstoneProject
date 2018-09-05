@@ -144,7 +144,7 @@ class ToDoList extends Component {
           <ul>
             {
               this.state.notes.reverse().map(note => {
-                return (<li key={note.id}>
+                return (<li className='noteLi' key={note.id}>
                   <div className="note">
                     <div className='noteTitle'>{note.due}</div>
                     <div className='noteText'>{note.text}</div>
