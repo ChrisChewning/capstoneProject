@@ -11,10 +11,10 @@ class ToDoList extends Component {
   constructor() {
     super();
     this.state = {
+      modalIsOpen: false,
       due: '',
       text: '',
       notes: [],
-      modalIsOpen: false,
     }
     this.newNote = this.newNote.bind(this); //react docs best-practice.
     this.postNote = this.postNote.bind(this);
@@ -37,15 +37,15 @@ class ToDoList extends Component {
   newNote(e) {
     e.preventDefault();
     this.setState({modalIsOpen: true});
-    console.log('newNote:', this.newNote);
+    console.log(this.state.modalIsOpen);
   }
 
   //=========================  CLOSE NOTE.  ======================
-  closeModal(e) {
-    e.preventDefault();
-    this.setState({modalIsOpen: false})
-    console.log('modalIsOpen:', this.state.modalIsOpen);
-  }
+  // closeModal(e) {
+  //   e.preventDefault();
+  //   this.setState({modalIsOpen: false});
+  //   console.log('modalIsOpen:', this.state.modalIsOpen);
+  // }
 
 //======================  POST & CREATE SPACE IN FIREBASE.  ===================
 
@@ -60,6 +60,7 @@ class ToDoList extends Component {
     notesRef.push(note); //sends a copy of our object to store in Firebase.
     this.setState({due: '', text: ''}); //set the state back to empty.
     this.setState({modalIsOpen: false})
+    console.log(this.state.modalIsOpen);
   }
 
   //=================  LOAD ALL THE NOTES when the page loads.  ==============
@@ -99,7 +100,6 @@ class ToDoList extends Component {
     }
     return (
       <div className='notesContainer'>
-
       {/* <div onClick={this.newNote}> */}
 
       <div className='addNewNote'>
@@ -114,9 +114,17 @@ class ToDoList extends Component {
       <Modal
         isOpen={this.state.modalIsOpen}
         onRequestClose={this.closeModal}
-        contentLabel="To Do Modal"
+        contentLabel="ToDoModal"
         >
-          <button onClick={this.closeModal}>close</button>
+          {/* <div>
+          <Button onClick={this.closeModal}>close</Button>
+        </div> */}
+
+        <div className='modal-close'>
+  <Button onClick={() => this.setState({modalIsOpen: false})}>X</Button>
+</div>
+
+
 
         <form onSubmit={this.postNote}>
           <Row>

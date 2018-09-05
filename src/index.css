@@ -72,6 +72,12 @@ a.yahoo-link, a.outlook-link, a.outlookcom-link, a.apple-link {
   display: none;
 }
 
+.modal-close {
+  display: flex;
+  justify-content: flex-end;
+  align-items:flex-end;
+}
+
 
 /*  */
 .postedNote {
