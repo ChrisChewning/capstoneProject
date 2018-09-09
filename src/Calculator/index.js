@@ -10,38 +10,43 @@ class Calculator extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  handleClick= (e) => {
+    this.setState({displayNum: this.state.displayNum});
+  }
 
-inputDigit(digit) {
+inputDigit(digit){
   const { displayVal } = this.state
 //if expr (displayVal = 'hello') is true then Stringify the digit. if not then displayVal + the digit. accepts a fn as its parameter.
   this.setState({displayVal: displayVal === '0' ? String(digit): displayVal + digit})
 }
 
-inputDot() {
+inputDot(){
 const { displayVal } = this.state
 if (displayVal.indexOf('.') === -1 ) {
   this.setState({displayVal: this.state.displayVal + '.'})
 }
 }
 
-clear() {
+clear(){
   const { displayVal } = this.state
   this.setState({displayVal: '0'});
 }
 
-togglePN() {
+togglePN(){
   const { displayVal } = this.state
-  //condition: the first character of displayVal is the - sign
-  //if true:  .substr(1) cuts off the 1st character. substr(1) does this.
-  //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substr
+  //condition: 1st char of displayVal is the - sign
+  //if true: cut off the 1st character. .substr(1) also cuts off the 1st character. MDN docs explains this.
   //if false: put - and the displayVal
-  this.setState({displayVal: displayVal.charAt(0) === '-' ? displayVal.substr(1) : '-' + displayVal})
+  this.setState({displayVal: displayVal.charAt(0) === '-' ? displayVal.slice(1) : '-' + displayVal})
 }
 
-//every time you click
-handleClick= (e) => {
-  this.setState({displayNum: this.state.displayNum});
+percent(){
+ const { displayVal } = this.state
+ const value = parseFloat(displayVal)
+ //MDN: parseFloat() fn parses an arg and returns a floating point number.
+ this.setState({displayVal: String (value / 100)})
 }
+
 
   render() {
     console.log(this.state.displayNum, 'handleClick');
@@ -57,7 +62,7 @@ handleClick= (e) => {
           <div className='function-keys'>
             <button className='cal-key key-clear' onClick={() => this.clear()}>AC</button>
             <button className='cal-key key-sign' onClick={() => this.togglePN()}>±</button>
-            <button className='cal-key key-percent'>%</button>
+            <button className='cal-key key-percent' onClick={() => this.percent()}>%</button>
               <button className='cal-key key-divide key-operations'>/</button>
           </div>
 
