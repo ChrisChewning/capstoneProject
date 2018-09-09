@@ -1,25 +1,42 @@
 import React, {Component} from 'react';
+import {Button, Buttons, Form, Icon, Row, Input} from 'react-materialize'
 
 class Calculator extends Component {
   constructor() {
     super();
     this.state = {
-      displayNum: 'HELLO'
+      displayVal: 'hello',
     }
+    this.handleClick = this.handleClick.bind(this);
   }
 
 
-handleClick = (e) => {
-  this.setState({[e.target.name]: e.target.value}); // computed properties.
+inputDigit(digit) {
+  const { displayVal } = this.state
+//if expr true then Stringify the digit. if not then displayNum + the digit. accepts a fn as its parameter.
+  this.setState({displayVal: displayVal === 'hello' ? String(digit): displayVal + digit
+})
 }
 
+inputDot() {
+const { displayVal } = this.state
+if (displayVal.indexOf('.') === -1 ) {
+  this.setState({displayVal: this.state.displayVal + '.'})
+}
+}
+
+//every time you click
+handleClick= (e) => {
+  this.setState({displayNum: this.state.displayNum});
+}
 
   render() {
-    console.log(this.handleClick, 'button clicked');
+    console.log(this.state.displayNum, 'handleClick');
 
-    return (<div className='calculatorWrapper'>
+    return (
+       <div className='calculatorWrapper'>
 
-      <div className='cal-display'>{this.state.displayNum}</div>
+      <div className='cal-display'>{this.state.displayVal}</div>
 
       <div className='cal-keypad'>
 
@@ -33,30 +50,32 @@ handleClick = (e) => {
 
           <div className='digit-keys'>
             <div className='top-row'>
-              <button className='cal-key key-7' onClick={this.handleClick} label='seven' value='seven'>7</button>
-              <button className='cal-key key-8' onClick={this.handleClick} label='eight' value='eight'>8</button>
-              <button className='cal-key key-9' onClick={this.handleClick} label='nine' name='nine' value='nine'>9</button>
-              <button className='cal-key key-multiply key-operations'>x</button>
+              <Button className='cal-key key-7' labe="7" value="7" onClick={() => this.inputDigit(7)} label='7' value='7'>7</Button>
+              <Button className='cal-key key-8' onClick={() => this.inputDigit(8)} label='8' value='8'>8</Button>
+              <Button className='cal-key key-9' onClick={() => this.inputDigit(9)} label='9' value='9'>9</Button>
+              <Button className='cal-key key-multiply key-operations' label='x' value='x'>x</Button>
 
             </div>
             <div className='2nd-row'>
-              <button className='cal-key key-4' onClick={this.handleClick} label='four' value='four'>4</button>
-              <button className='cal-key key-5' onClick={this.handleClick} label='five' value='five'>5</button>
-              <button className='cal-key key-6' onClick={this.handleClick} label='six' value='six'>6</button>
-              <button className='cal-key key-divide key-operations'>+</button>
+              <Button className='cal-key key-4' onClick={() => this.inputDigit(4)} label="4" value="4">4</Button>
+              <Button className='cal-key key-5' onClick={() => this.inputDigit(5)} label='5' value='5'>5</Button>
+              <Button className='cal-key key-6' onClick={() => this.inputDigit(6)} label='6' value='6'>6</Button>
+              <Button className='cal-key key-divide key-operations'>+</Button>
             </div>
 
             <div className='3rd-row'>
-              <button className='cal-key key-1' onClick={this.handleClick} label='one' value='one'>1</button>
-              <button className='cal-key key-2' onClick={this.handleClick} label='two' value='two'>2</button>
-              <button className='cal-key key-3' onClick={this.handleClick} label='three' value='three'>3</button>
-              <button className='cal-key key-subtract key-operations'>-</button>
+
+              <Button className='cal-key key-1' onClick={() => this.inputDigit(1)} label='1' value='1'>1</Button>
+              <Button className='cal-key key-2' onClick={() => this.inputDigit(2)} label='2' value='2'>2</Button>
+              <Button className='cal-key key-3' onClick={() => this.inputDigit(3)} label='3' value='3'>3</Button>
+              <Button className='cal-key key-subtract key-operations' label="-" value="-">-</Button>
+
 
             </div>
 
 
-            <button className='cal-key key-0' onClick={this.handleClick} label='0' value='0'>0</button>
-            <button className='cal-key key-decimal' onClick={this.handleClick} label='decimal' value='decimal'>.</button>
+            <button className='cal-key key-0' onClick={() => this.inputDigit(0)}>0</button>
+            <button className='cal-key key-decimal' onClick={() => this.inputDot()} label='decimal' value='decimal'>.</button>
 
             <button className='cal-key key-equals'>=</button>
 
@@ -64,15 +83,10 @@ handleClick = (e) => {
           </div>
         </div>
 
-        <div className='operator-keys'>
+         {/* <div className='operator-keys'>
+         </div> */}
 
-
-
-
-
-        </div>
-
-      </div>
+            </div>
       {/* ends keypad */}
     </div>)
   }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Form, Icon, Row, Input} from 'react-materialize'
+import {Button, Form, Icon, Row, Input} from 'react-materialize';
 import firebase from 'firebase';
 import {connect} from 'react-firebase';
 import Firebase from '../Firebase';
@@ -19,6 +19,8 @@ class Notepad extends Component {
 componentDidMount() {
   firebase.database().ref().on('value', (res) => {
     console.log(res.val());
+    //  setInterval(this.inc, 1000); for autosave?
+    //https://medium.com/@baphemot/understanding-reactjs-setstate-a4640451865b
   });
 }
 
