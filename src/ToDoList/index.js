@@ -40,6 +40,7 @@ class ToDoList extends Component {
     console.log(this.state.modalIsOpen);
   }
 
+
 //======================  POST & CREATE SPACE IN FIREBASE.  ===================
 
     postNote(e) { //onSubmit fn.
@@ -53,6 +54,7 @@ class ToDoList extends Component {
     this.setState({due: '', text: ''}); //set the state back to empty.
     this.setState({modalIsOpen: false}) //close the modal.
   }
+
 
   //=================  LOAD ALL THE NOTES when the page loads.  ==============
 
@@ -77,8 +79,6 @@ class ToDoList extends Component {
     const noteRef = firebase.database().ref(`/notes/${noteId}`);
     noteRef.remove();
   }
-
-  //
 
   //======================  RENDER YOUR FORM.  ============================
 
@@ -108,20 +108,16 @@ class ToDoList extends Component {
         onRequestClose={this.closeModal}
         contentLabel="ToDoModal"
         >
-
         <div className='modal-close'>
   <Button onClick={() => this.setState({modalIsOpen: false})}>X</Button>
 </div>
-
         <form onSubmit={this.postNote}>
           <Row>
             <Input s={8} type='text' className='noteTitle' name='due' onChange={this.handleChange} value={this.state.due}  label='Due by:'/>
           </Row>
-
           <Row>
             <Input s={12} className='noteText' name='text' onChange={this.handleChange} value={this.state.text}   label='What:'/>
           </Row>
-
           <Button waves='light' type='submit' value='add new note'>Let's Do It!</Button>
         </form>
       </Modal>

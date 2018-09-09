@@ -30,7 +30,7 @@ render(){
       <li><Link to='/home' className=''>Home</Link></li>
       <li><Link to='/to-dos' className=''>To-Do List</Link></li>
       <li><Link to='/notepad' className=''>Notepad</Link></li>
-      <li><Link to='/calendar' className=''>Calendar</Link></li>
+      <li><Link to='/calculator' className=''>Calculator</Link></li>
     </ul>
 </div>
 </div>
