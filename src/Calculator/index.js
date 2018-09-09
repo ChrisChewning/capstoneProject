@@ -5,7 +5,7 @@ class Calculator extends Component {
   constructor() {
     super();
     this.state = {
-      displayVal: 'hello',
+      displayVal: '0',
     }
     this.handleClick = this.handleClick.bind(this);
   }
@@ -13,9 +13,8 @@ class Calculator extends Component {
 
 inputDigit(digit) {
   const { displayVal } = this.state
-//if expr true then Stringify the digit. if not then displayNum + the digit. accepts a fn as its parameter.
-  this.setState({displayVal: displayVal === 'hello' ? String(digit): displayVal + digit
-})
+//if expr (displayVal = 'hello') is true then Stringify the digit. if not then displayVal + the digit. accepts a fn as its parameter.
+  this.setState({displayVal: displayVal === '0' ? String(digit): displayVal + digit})
 }
 
 inputDot() {
@@ -30,6 +29,14 @@ clear() {
   this.setState({displayVal: '0'});
 }
 
+togglePN() {
+  const { displayVal } = this.state
+  //condition: the first character of displayVal is the - sign
+  //if true:  .substr(1) cuts off the 1st character. substr(1) does this.
+  //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/substr
+  //if false: put - and the displayVal
+  this.setState({displayVal: displayVal.charAt(0) === '-' ? displayVal.substr(1) : '-' + displayVal})
+}
 
 //every time you click
 handleClick= (e) => {
@@ -49,7 +56,7 @@ handleClick= (e) => {
         <div className='input-keys'>
           <div className='function-keys'>
             <button className='cal-key key-clear' onClick={() => this.clear()}>AC</button>
-            <button className='cal-key key-sign'>?</button>
+            <button className='cal-key key-sign' onClick={() => this.togglePN()}>±</button>
             <button className='cal-key key-percent'>%</button>
               <button className='cal-key key-divide key-operations'>/</button>
           </div>
