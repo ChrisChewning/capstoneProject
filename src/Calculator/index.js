@@ -25,6 +25,12 @@ if (displayVal.indexOf('.') === -1 ) {
 }
 }
 
+clear() {
+  const { displayVal } = this.state
+  this.setState({displayVal: '0'});
+}
+
+
 //every time you click
 handleClick= (e) => {
   this.setState({displayNum: this.state.displayNum});
@@ -42,7 +48,7 @@ handleClick= (e) => {
 
         <div className='input-keys'>
           <div className='function-keys'>
-            <button className='cal-key key-clear'>AC</button>
+            <button className='cal-key key-clear' onClick={() => this.clear()}>AC</button>
             <button className='cal-key key-sign'>?</button>
             <button className='cal-key key-percent'>%</button>
               <button className='cal-key key-divide key-operations'>/</button>
