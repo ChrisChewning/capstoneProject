@@ -19,6 +19,7 @@ class Notepad extends Component {
 componentDidMount() {
   firebase.database().ref().on('value', (res) => {
     console.log(res.val());
+    // this.setState({notepad:res.val});
     //  setInterval(this.inc, 1000); for autosave?
     //https://medium.com/@baphemot/understanding-reactjs-setstate-a4640451865b
   });
