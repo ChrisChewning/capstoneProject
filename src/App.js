@@ -16,6 +16,7 @@ class App extends Component {
       <div>
         < Sidebar />
         <Switch>
+          <Route exact path='/' component = {Home} />
           <Route exact path='/home' component = {Home} />
           <Route exact path="/to-dos" component = {ToDoList} />
           <Route exact path='/notepad' component = {Notepad} />
