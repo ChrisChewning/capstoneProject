@@ -1,7 +1,6 @@
 import firebaseui from 'firebaseui';
 import firebase from 'firebase';
 
-//TEST TEST TEST TEST TEST
 
 const config = {
     apiKey: "AIzaSyAzFb_TW6s_2DvByFaZrwUpLKIC7rHc10Y",
