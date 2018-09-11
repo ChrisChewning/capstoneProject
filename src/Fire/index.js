@@ -2,6 +2,8 @@ import firebaseui from 'firebaseui';
 import firebase from 'firebase';
 
 
+//testing
+
 const config = {
     apiKey: "AIzaSyAzFb_TW6s_2DvByFaZrwUpLKIC7rHc10Y",
     authDomain: "capstone-chewning.firebaseapp.com",
