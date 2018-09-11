@@ -1,6 +1,8 @@
 import firebaseui from 'firebaseui';
 import firebase from 'firebase';
 
+//TEST TEST TEST TEST TEST
+
 const config = {
     apiKey: "AIzaSyAzFb_TW6s_2DvByFaZrwUpLKIC7rHc10Y",
     authDomain: "capstone-chewning.firebaseapp.com",
@@ -21,7 +23,7 @@ const config = {
   ]
 
 };
-firebase.initializeApp(config); 
+firebase.initializeApp(config);
 
 
 //Exports
