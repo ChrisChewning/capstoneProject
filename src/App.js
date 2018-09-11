@@ -11,7 +11,8 @@ import Calculator from './Calculator';
 import Login from './Login';
 
 class App extends Component {
-  render() {
+
+  render(){
     return (
       <div>
         < Sidebar />

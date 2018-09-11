@@ -18,7 +18,7 @@ class Login extends Component {
 // }
     return(
    <GoogleLogin
-     buttonText="Login"
+     buttonText="Logn"
      // onLogoutSuccess={logout}
    >
    </GoogleLogin>
