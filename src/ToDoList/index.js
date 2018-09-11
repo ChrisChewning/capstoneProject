@@ -62,6 +62,8 @@ class ToDoList extends Component {
     const notesRef = firebase.database().ref('notes');
     notesRef.on('value', (snapshot) => { //overview of notes in db.
       let notes = snapshot.val(); //listener
+
+      
       let newState = []; //instatiate & populate with our data.
       for (let note in notes) { //loop over & push results into one object.
         newState.push({id: note, due: notes[note].due, text: notes[note].text});

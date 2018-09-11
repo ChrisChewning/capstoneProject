@@ -43,18 +43,12 @@ handleSave(e) {
 
 
 componentDidMount() {
-  const notepadRef = firebase.database().ref('notepadNotes');
-  notepadRef.on('value', (snapshot) => { //overview of notepad in db.
+  const notepadNotesRef = firebase.database().ref('notepadNotes');
+  notepadNotesRef.on('value', (snapshot) => { //overview of notepad in db.
     let notepadNotes = snapshot.val(); //listener
-    // let newState = []; //instatiate & populate with our data.
-    // for (let notepad in notepadNotes) { //loop over & push results into one object.
-    //   newState.push({notepad: notepadNotes});
-    // }
-    // this.setState({notepad: notepad.id});
-  });
-
+      this.setState({notepad: notepadNotes.notepad})
+})
 }
-
 
   render() {
 console.log(this.state.notepad);
