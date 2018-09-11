@@ -20,13 +20,36 @@ class AuthButtons extends Component {
      items: [],
      user: null,  //login is set to null onLoad.
      authenticated: null,
+     uid: null,
    }
+   // this.userId = firebase.auth().currentUser.uid
 }
+
+// var userUID;
+// var user = firebase.auth().currentUser();
+//
+// if (user)
+//   userUID = user.uid
+
+
+// componentDidMount() {
+//   const users = firebase.database().ref('users');
+//   users.on('value', (snapshot) => { //overview of notepad in db.
+//     let notepadNotes = snapshot.val(); //listener
+//       this.setState({notepad: notepadNotes.notepad})
+// })
+// }
+
 
 componentDidMount() {
    firebase.auth().onAuthStateChanged((user) => {
      if (user) {
        this.setState({user: true});
+       auth.uid = firebase.auth().currentUser.uid;
+       this.setState({uid: user.uid });
+       // var userUID;
+       // userUID = user.uid
+       // auth.uid = this.state.uid;
      } else {
        this.setState({user: false});
      }
@@ -39,26 +62,30 @@ login() {
   auth.signInWithPopup(provider)
     .then((result) => {
       const user = result.user;
-      this.setState({user});
+      this.setState({user, uid: auth.uid});
+      // this.setState({uid: auth.uid});
+      // auth.uid = auth.currentUser;
+      // if (user) { this.userId = user.uid }
     });
 }
 
 logout() {
   auth.signOut()
     .then(() => {
-      this.setState({user: null});
+      this.setState({user: null, uid: null});
+
     });
 }
 
 
 render() {
-  console.log(this.state.user);
+
+  // console.log(auth.O, 'this is auth.O');  //reads both users I have?
+  console.log(auth.uid, 'this is auth.uid');
+  // console.log(this.state.uid);
 
   return(
   <div className="wrapperButtons">
-    {/* <GoogleLogin
-      buttonText="Login"
-</GoogleLogin> */}
   {this.state.user ?
     <button className='logs' onClick={this.logout}>Log Out</button>
     :
@@ -66,33 +93,6 @@ render() {
   }
 </div>
 )}
-
-
-/* <div className="wrapper">
-  {/* <GoogleLogin
-    buttonText="Login"
-</GoogleLogin> */
-
-// {this.state.user ?
-//   <GoogleLogin buttonText="login" onClick={this.logout}>Log Out</GoogleLogin>
-//   :
-//   <GoogleLogout buttonText="logout" onClick={this.login}>Log In</GoogleLogout>
-// }
-// </div>
-// )}
-
-
-//   render() {
-//     return(
-//    <GoogleLogout
-//
-//      buttonText="Logout" logOut onClick={this.logOut} //or just logOut ?
-//
-//      //OPTION 2: onLogoutSuccess={logout}
-//    >
-//    </GoogleLogout>
-// )
-// };
 }
 
 export default AuthButtons;

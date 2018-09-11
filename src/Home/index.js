@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Login from '../Login';
 import AuthButtons from '../AuthButtons';
 import Moment from 'react-moment';
 

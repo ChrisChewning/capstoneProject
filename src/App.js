@@ -8,7 +8,6 @@ import Home from './Home';
 import Notepad from './Notepad';
 import ToDoList from './ToDoList';
 import Calculator from './Calculator';
-import Login from './Login';
 
 class App extends Component {
 
