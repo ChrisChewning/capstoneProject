@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import {Button, Form, Icon, Row, Input} from 'react-materialize'
-// import firebase from 'firebase';
-import firebase from '../Fire';
+import firebase from '../FirebaseConfig';
 import {connect} from 'react-firebase';
-// import Firebase  from '../Firebase';
 import Modal from 'react-modal';
 import AddToCalendar from 'react-add-to-calendar';
 
@@ -85,6 +83,7 @@ class ToDoList extends Component {
   //======================  RENDER YOUR FORM.  ============================
 
   render() {
+    console.log(this.state.notes);
     let event = {
         title: 'Sample Event',
         description: 'example',

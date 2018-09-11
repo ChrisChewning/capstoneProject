@@ -4,7 +4,7 @@ import { GoogleLogout } from 'react-google-login';
 import firebaseui from 'firebaseui';
 // import firebase, { auth, provider } from 'firebase';
 import firebase, { auth, provider }  from '../FirebaseConfig';
-
+import Home from '../Home';
 //LINK https://firebase.google.com/docs/auth/web/google-signin
 
 
@@ -19,13 +19,21 @@ class AuthButtons extends Component {
      username: '',
      items: [],
      user: null,  //login is set to null onLoad.
+     authenticated: null,
    }
 }
 
+componentDidMount() {
+   firebase.auth().onAuthStateChanged((user) => {
+     if (user) {
+       this.setState({user: true});
+     } else {
+       this.setState({user: false});
+     }
+   });
+ }
 
-handleChange(e) {
-  /* ... */
-}
+
 
 login() {
   auth.signInWithPopup(provider)
@@ -44,6 +52,8 @@ logout() {
 
 
 render() {
+  console.log(this.state.user);
+
   return(
   <div className="wrapperButtons">
     {/* <GoogleLogin
