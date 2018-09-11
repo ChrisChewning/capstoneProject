@@ -3,7 +3,7 @@ import {Button, Form, Icon, Row, Input} from 'react-materialize'
 // import firebase from 'firebase';
 import firebase from '../Fire';
 import {connect} from 'react-firebase';
-import Firebase  from '../Firebase';
+// import Firebase  from '../Firebase';
 import Modal from 'react-modal';
 import AddToCalendar from 'react-add-to-calendar';
 
@@ -63,7 +63,7 @@ class ToDoList extends Component {
     notesRef.on('value', (snapshot) => { //overview of notes in db.
       let notes = snapshot.val(); //listener
 
-      
+
       let newState = []; //instatiate & populate with our data.
       for (let note in notes) { //loop over & push results into one object.
         newState.push({id: note, due: notes[note].due, text: notes[note].text});

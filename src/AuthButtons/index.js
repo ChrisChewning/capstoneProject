@@ -3,7 +3,7 @@ import { GoogleLogout } from 'react-google-login';
 // import firebase from 'firebase';
 import firebaseui from 'firebaseui';
 // import firebase, { auth, provider } from 'firebase';
-import firebase, { auth, provider }  from '../Fire';
+import firebase, { auth, provider }  from '../FirebaseConfig';
 
 //LINK https://firebase.google.com/docs/auth/web/google-signin
 

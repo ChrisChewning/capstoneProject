@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Button, Form, Icon, Row, Input} from 'react-materialize';
 import firebase from 'firebase';
 import {connect} from 'react-firebase';
-import Firebase from '../Firebase';
+// import Firebase from '../Firebase';
 
 
 class Notepad extends Component {
