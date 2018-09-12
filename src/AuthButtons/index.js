@@ -20,7 +20,7 @@ class AuthButtons extends Component {
      items: [],
      user: null,  //login is set to null onLoad.
      authenticated: null,
-     uid: null,
+     // uid: null,
    }
    // this.userId = firebase.auth().currentUser.uid
 }
@@ -42,11 +42,17 @@ class AuthButtons extends Component {
 
 
 componentDidMount() {
-   firebase.auth().onAuthStateChanged((user) => {
-     if (user) {
-       this.setState({user: true});
-       auth.uid = firebase.auth().currentUser.uid;
-       this.setState({uid: user.uid });
+    // const users = firebase.database().ref('users'); //listener for users
+    // users.on('value', (snapshot) => {
+
+   firebase.auth().onAuthStateChanged((user) => {  //Listener
+     if (user != null) {  //if user isn't null, user is currentUser.
+       var user = firebase.auth().currentUser;
+       var uid;
+        uid = user.uid;
+        this.setState({user: true})
+       // auth.uid = firebase.auth().currentUser.uid;
+       this.setState({uid: auth.uid });
        // var userUID;
        // userUID = user.uid
        // auth.uid = this.state.uid;
@@ -54,18 +60,16 @@ componentDidMount() {
        this.setState({user: false});
      }
    });
- }
+
+}
 
 
 
 login() {
   auth.signInWithPopup(provider)
     .then((result) => {
-      const user = result.user;
-      this.setState({user, uid: auth.uid});
-      // this.setState({uid: auth.uid});
-      // auth.uid = auth.currentUser;
-      // if (user) { this.userId = user.uid }
+      // const user = result.user;
+      this.setState({user: true});
     });
 }
 
@@ -73,17 +77,13 @@ logout() {
   auth.signOut()
     .then(() => {
       this.setState({user: null, uid: null});
-
     });
 }
 
 
 render() {
-
-  // console.log(auth.O, 'this is auth.O');  //reads both users I have?
-  console.log(auth.uid, 'this is auth.uid');
-  // console.log(this.state.uid);
-
+  // console.log('this is auth:', auth);
+  console.log("this is auth.uid:", auth.uid);
   return(
   <div className="wrapperButtons">
   {this.state.user ?
