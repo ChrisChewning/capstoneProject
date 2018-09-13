@@ -14,10 +14,11 @@ class AuthButtons extends Component {
    super();
    this.login = this.login.bind(this);
    this.logout = this.logout.bind(this);
+
    this.state = {
      currentItem: '',
      username: '',
-     items: [],
+     // items: [],
      user: null,  //login is set to null onLoad.
    }
    // this.user = firebase.auth().currentUser.uid;
@@ -43,13 +44,12 @@ class AuthButtons extends Component {
 // }
 
 
-// componentDidMount(){
-//   this.userId = firebase.auth().currentUser.uid
-//   async getUid => {
-//           let user = await firebase.auth().currentUser;
-//           let email = await user.uid;
-// }
-// }
+componentDidMount(){
+  this.userId = firebase.auth().currentUser.uid
+  async getUid => {
+          let user = await firebase.auth().currentUser;
+}
+}
 
 // componentDidMount() {
 //    firebase.auth().onAuthStateChanged((user) => {  //since onAuthStatedChanged() is asynchronouse like most firebase calls, you need a callback. that is (user)
@@ -66,13 +66,10 @@ class AuthButtons extends Component {
 
 
 
-login() {
-  auth.signInWithPopup(provider)
-    // .then((user) => {
-      // .then((user)) => {
-        firebase.auth().onAuthStateChanged((user) => {  //since onAuthStatedChanged() is asynchronouse like most firebase calls, you need a callback. that is (user)
+login(){
+    auth.signInWithPopup(provider)
+        .then(firebase.auth().onAuthStateChanged((user) => {  //since onAuthStatedChanged() is asynchronouse like most firebase calls, you need a callback. that is (user).
         if (user != null) {
-
           // async getUid => { doesnt let you log in.
           var user = firebase.auth().currentUser.uid; //if user isn't null, user is currentUser.
           this.userid = user.id;
@@ -81,7 +78,7 @@ login() {
         } else {
           this.setState({user: null});
         }
-      }
+      })
     )}
 
 
