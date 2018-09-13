@@ -19,10 +19,8 @@ class AuthButtons extends Component {
      username: '',
      items: [],
      user: null,  //login is set to null onLoad.
-     authenticated: null,
-     // uid: null,
    }
-   // this.userId = firebase.auth().currentUser.uid
+   // this.user = firebase.auth().currentUser.uid;
 }
 
 // var userUID;
@@ -33,57 +31,73 @@ class AuthButtons extends Component {
 
 
 // componentDidMount() {
-//   const users = firebase.database().ref('users');
-//   users.on('value', (snapshot) => { //overview of notepad in db.
-//     let notepadNotes = snapshot.val(); //listener
-//       this.setState({notepad: notepadNotes.notepad})
-// })
+//   async getUid => {
+//         let user = await firebase.auth().currentUser;
+//         let uid = await user.uid;
+//         this.setState({uid: uid});
+// }
+//   // const users = firebase.database().ref('users');
+//   // users.on('value', (snapshot) => { //overview of notepad in db.
+//   //   let uid = snapshot.val(); //listener
+//   //     this.setState({uid: uid})
 // }
 
 
-componentDidMount() {
-    // const users = firebase.database().ref('users'); //listener for users
-    // users.on('value', (snapshot) => {
+// componentDidMount(){
+//   this.userId = firebase.auth().currentUser.uid
+//   async getUid => {
+//           let user = await firebase.auth().currentUser;
+//           let email = await user.uid;
+// }
+// }
 
-   firebase.auth().onAuthStateChanged((user) => {  //Listener
-     if (user != null) {  //if user isn't null, user is currentUser.
-       var user = firebase.auth().currentUser;
-       var uid;
-        uid = user.uid;
-        this.setState({user: true})
-       // auth.uid = firebase.auth().currentUser.uid;
-       this.setState({uid: auth.uid });
-       // var userUID;
-       // userUID = user.uid
-       // auth.uid = this.state.uid;
-     } else {
-       this.setState({user: false});
-     }
-   });
+// componentDidMount() {
+//    firebase.auth().onAuthStateChanged((user) => {  //since onAuthStatedChanged() is asynchronouse like most firebase calls, you need a callback. that is (user)
+//      if (user != null) {
+//        var user = firebase.auth().currentUser.uid; //if user isn't null, user is currentUser.
+//         this.setState({user: user}) //now this.state.user is the .uid
+//      } else {
+//        this.setState({user: null});
+//      }
+//    });
+//
+// }
 
-}
 
 
 
 login() {
   auth.signInWithPopup(provider)
-    .then((result) => {
-      // const user = result.user;
-      this.setState({user: true});
-    });
-}
+    // .then((user) => {
+      // .then((user)) => {
+        firebase.auth().onAuthStateChanged((user) => {  //since onAuthStatedChanged() is asynchronouse like most firebase calls, you need a callback. that is (user)
+        if (user != null) {
+
+          // async getUid => { doesnt let you log in.
+          var user = firebase.auth().currentUser.uid; //if user isn't null, user is currentUser.
+          this.userid = user.id;
+           this.setState({user: user}) //now this.state.user is the .uid
+         // }
+        } else {
+          this.setState({user: null});
+        }
+      }
+    )}
+
+
 
 logout() {
   auth.signOut()
     .then(() => {
-      this.setState({user: null, uid: null});
+      this.setState({user: null});
     });
 }
 
 
 render() {
   // console.log('this is auth:', auth);
-  console.log("this is auth.uid:", auth.uid);
+  console.log("this is user:", this.state.user);
+  // console.log("this is auth.uid:", auth.uid);
   return(
   <div className="wrapperButtons">
   {this.state.user ?
