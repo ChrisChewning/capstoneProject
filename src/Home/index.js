@@ -8,7 +8,7 @@ class Home extends Component {
   render() {
     var date = new Date();
     console.log(date);
-    console.log(this.props);
+    console.log(this.props.user);
     // console.log('this.props: ', this.props);
     // console.log(this.state.authenticated, 'authenticated');
     return(

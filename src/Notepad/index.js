@@ -52,6 +52,8 @@ componentDidMount() {
 
   render() {
 console.log(this.state.notepad);
+console.log(this.props.user);
+
     return (
       <div className='notepadContainer'>
 <div class="row">

@@ -25,7 +25,7 @@ class App extends Component {
 }
 
 componentDidMount(){
-  this.authListener();
+  this.login();
 }
 
   login() {
@@ -40,15 +40,15 @@ componentDidMount(){
     )
 }
 
-authListener (){
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      this.setState({ user });
-    } else {
-      this.setState({user: null});
-    }
-  })
-}
+// authListener (){
+//   firebase.auth().onAuthStateChanged((user) => {
+//     if (user) {
+//       this.setState({ user });
+//     } else {
+//       this.setState({user: null});
+//     }
+//   })
+// }
 
 
   logout() {
@@ -90,7 +90,14 @@ authListener (){
               user={this.state.user}/>}
             />
 
-          <Route exact path='/notepad' component = {Notepad} />
+          {/* <Route exact path='/notepad' component = {Notepad} /> */}
+
+          <Route exact path='/notepad'
+            render={() => <Notepad
+              onLoginClick={this.login}
+              onLogoutClick={this.logout}
+              user={this.state.user}/>}
+            />
 
 
 

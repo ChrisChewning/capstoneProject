@@ -85,6 +85,7 @@ class ToDoList extends Component {
   render() {
     console.log(this.state.notes);
     console.log(this.props.user);
+
     let event = {
         title: 'Sample Event',
         description: 'example',
@@ -94,8 +95,7 @@ class ToDoList extends Component {
     }
     return (
       <div className='notesContainer'>
-        {this.props.user}
-      {/* <div onClick={this.newNote}> */}
+
 
       <div className='addNewNote'>
         <Button onClick={this.newNote} id="noteBtn">New Note</Button>
