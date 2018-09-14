@@ -16,36 +16,39 @@ class App extends Component {
    super();
    this.login = this.login.bind(this);
    this.logout = this.logout.bind(this);
+
    this.state = {
      currentItem: '',
      username: '',
      user: null,  //login is set to null onLoad.
    }
- }
+}
+
+componentDidMount(){
+  this.authListener();
+}
 
   login() {
       auth.signInWithPopup(provider)
       .then((result) => {
         console.log(result);
         if (result) {
+          // this.setState({user: result.user.uid})
           this.setState({user: result.user})
         }
       }
     )
 }
-      //     .then(firebase.auth().onAuthStateChanged((user) => {  //since onAuthStatedChanged() is asynchronouse like most firebase calls, you need a callback. that is (user).
-      //     if (user != null) {
-      //       // async getUid => { doesnt let you log in.
-      //       var user = firebase.auth().currentUser.uid; //if user isn't null, user is currentUser.
-      //       // this.userid = user.id;
-      //        this.setState({user: user}) //now this.state.user is the .uid
-      //      // }
-      //     } else {
-      //       this.setState({user: null});
-      //     }
-      //   })
-      // )}
 
+authListener (){
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      this.setState({ user });
+    } else {
+      this.setState({user: null});
+    }
+  })
+}
 
 
   logout() {
