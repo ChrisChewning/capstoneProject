@@ -20,7 +20,7 @@ componentDidMount() {
   firebase.database().ref().on('value', (res) => {
     console.log(res.val());
     // this.setState({notepad:res.val});
-    //  setInterval(this.inc, 1000); for autosave?
+    //  setInterval(this.inc, 1000); for autosave later?
     //https://medium.com/@baphemot/understanding-reactjs-setstate-a4640451865b
   });
 }

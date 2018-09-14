@@ -8,6 +8,8 @@ class Home extends Component {
   render() {
     var date = new Date();
     console.log(date);
+    console.log(this.props);
+    // console.log('this.props: ', this.props);
     // console.log(this.state.authenticated, 'authenticated');
     return(
       <div>
@@ -17,7 +19,15 @@ class Home extends Component {
       </div>
         <br/>
          <div className='googleBtns'>
-        <AuthButtons />
+        {/* <AuthButtons /> */}
+        <div className="wrapperButtons">
+        {this.props.user ?
+          <button className='logs' onClick={this.props.onLogoutClick}>Log Out</button>
+          :
+          <button className='logs' onClick={this.props.onLoginClick}>Log In</button>
+        }
+
+      </div>
       </div>
 
       </div>

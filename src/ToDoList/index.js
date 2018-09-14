@@ -84,15 +84,17 @@ class ToDoList extends Component {
 
   render() {
     console.log(this.state.notes);
+    console.log(this.props.user);
     let event = {
         title: 'Sample Event',
         description: 'example',
         location: 'Austin, TX',
-        startTime: '2018-09-08T20:15:00-04:00',
-        endTime: '2018-09-08T21:45:00-04:00'
+        startTime: '2018-09-23T20:15:00-04:00',
+        endTime: '2018-09-23T21:45:00-04:00'
     }
     return (
       <div className='notesContainer'>
+        {this.props.user}
       {/* <div onClick={this.newNote}> */}
 
       <div className='addNewNote'>
