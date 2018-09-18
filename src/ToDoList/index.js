@@ -13,7 +13,7 @@ class ToDoList extends Component {
       due: '',
       text: '',
       notes: [],
-      user: '',
+      // user: '',
     }
     this.newNote = this.newNote.bind(this);
     this.postNote = this.postNote.bind(this);
@@ -44,7 +44,7 @@ class ToDoList extends Component {
   postNote(e, noteId) { //onSubmit fn.
     e.preventDefault();
     var user = this.props.uid;
-    const notesRef = firebase.database().ref(`/users/${user}`); //Listener.
+    const notesRef = firebase.database().ref(`/users/${user}/notes`); //Listener.
     const note = {
       due: this.state.due,
       text: this.state.text
@@ -59,7 +59,8 @@ class ToDoList extends Component {
 
   componentDidMount() {
     var user = this.props.uid;
-    const notesRef = firebase.database().ref(`/users/${user}`);
+    var notes = this.state.notes;
+    const notesRef = firebase.database().ref(`/users/${user}/notes`);
     notesRef.on('value', (snapshot) => { //overview of notes in db.
       let notes = snapshot.val(); //listener
       let newState = []; //instatiate & populate with our data.
@@ -77,20 +78,17 @@ class ToDoList extends Component {
 
   removeNote(noteId) {
     //users/user/notes/${noteId} deltes.
-    const noteRef = firebase.database().ref(`users/user/notes/${noteId}`);
+    var user = this.props.uid;
+    const noteRef = firebase.database().ref(`users/${user}/notes/${noteId}`);
     noteRef.remove();
   }
 
   //======================  RENDER YOUR FORM.  ============================
 
   render() {
-    // console.log(this.state.notes);
-    // console.log(this.props.user);
+    console.log(this.state.notes);
     console.log(this.props.user, 'this is user');
-    // console.log(this.props.uid);
-    // console.log(user, 'this is user');
-    // console.log(this.props.usersRef);
-    // console.log(this.state.notes);
+
 
     let event = {
       title: 'Sample Event',
