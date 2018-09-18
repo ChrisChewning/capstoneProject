@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 // import firebase from 'firebase';
-import firebase, { auth, provider }  from './FirebaseConfig';
+import firebase, { auth, provider, db}  from './FirebaseConfig';
 import { connect } from 'react-firebase';
 import {Route, Redirect, Switch} from 'react-router-dom';
 import Sidebar from './Sidebar';
@@ -16,39 +16,68 @@ class App extends Component {
    super();
    this.login = this.login.bind(this);
    this.logout = this.logout.bind(this);
+   this.register = this.register.bind(this);
 
    this.state = {
      currentItem: '',
      username: '',
      user: null,  //login is set to null onLoad.
+     uid: '',
+     email: '',
+     password: '',
+     notes: '',
    }
 }
 
-componentDidMount(){
-  this.login();
+
+
+
+
+
+// persists your log in over refresh or route change.
+componentDidMount() {
+  firebase.auth().onAuthStateChanged((user) => { //listener
+    if (user) {
+        // uid = user.uid;
+      this.setState({user});
+      this.setState({uid: user.uid}); //authentication for db rules.
+      // firebase.ref(`users/${id}`).set({
+    // user.uid
+  // });
+    }
+  });
 }
+
+
+
+// register(){
+register(e){
+  e.preventDefault()
+  firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
+}
+
 
   login() {
       auth.signInWithPopup(provider)
       .then((result) => {
+        // this.props.users.push(note);
         console.log(result);
+        // user.getToken();
         if (result) {
-          // this.setState({user: result.user.uid})
-          this.setState({user: result.user})
+          this.setState({user: result.user});
+          // this.setState({notes: this.props.notesRef})
+
+          const usersRef = firebase.database().ref('users'); //Listener.
+          const userData = {
+            email: result.user.email,
+            // notes: notes,
+
+          }
+          usersRef.push(userData);
         }
       }
     )
 }
-
-// authListener (){
-//   firebase.auth().onAuthStateChanged((user) => {
-//     if (user) {
-//       this.setState({ user });
-//     } else {
-//       this.setState({user: null});
-//     }
-//   })
-// }
 
 
   logout() {
@@ -60,6 +89,7 @@ componentDidMount(){
 
   render(){
     console.log(this.state.user);
+    console.log(this.state.uid);
     return (
       <div>
         <Sidebar />
@@ -84,10 +114,14 @@ componentDidMount(){
           />
 
           <Route exact path='/to-dos'
-            render={() => <ToDoList
+            render={(props) => <ToDoList
               onLoginClick={this.login}
               onLogoutClick={this.logout}
-              user={this.state.user}/>}
+              user={this.state.user}
+              uid={this.state.uid}
+
+
+            />}
             />
 
           {/* <Route exact path='/notepad' component = {Notepad} /> */}

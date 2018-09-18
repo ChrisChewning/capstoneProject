@@ -13,6 +13,7 @@ class ToDoList extends Component {
       due: '',
       text: '',
       notes: [],
+      user: '',
     }
     this.newNote = this.newNote.bind(this);
     this.postNote = this.postNote.bind(this);
@@ -26,42 +27,41 @@ class ToDoList extends Component {
   }
 
   handleChange = (e) => {
-    this.setState({[e.target.name]: e.target.value});
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   }
 
-
-
-//=================  NEW NOTE POPS FROM TOP RIGHT TO INPUT DATA. ==============
+  //=================  NEW NOTE POPS FROM TOP RIGHT TO INPUT DATA. ==============
   newNote(e) {
     e.preventDefault();
     this.setState({modalIsOpen: true});
     console.log(this.state.modalIsOpen);
   }
 
+  //======================  POST & CREATE SPACE IN FIREBASE.  ==================
 
-//======================  POST & CREATE SPACE IN FIREBASE.  ===================
-
-    postNote(e) { //onSubmit fn.
+  postNote(e, noteId) { //onSubmit fn.
     e.preventDefault();
-    const notesRef = firebase.database().ref('notes'); //Listener.
+    var user = this.props.uid;
+    const notesRef = firebase.database().ref(`/users/${user}`); //Listener.
     const note = {
       due: this.state.due,
       text: this.state.text
     }
     notesRef.push(note); //sends a copy of our object to store in Firebase.
+
     this.setState({due: '', text: ''}); //set the state back to empty.
     this.setState({modalIsOpen: false}) //close the modal.
   }
 
-
   //=================  LOAD ALL THE NOTES when the page loads.  ==============
 
   componentDidMount() {
-    const notesRef = firebase.database().ref('notes');
+    var user = this.props.uid;
+    const notesRef = firebase.database().ref(`/users/${user}`);
     notesRef.on('value', (snapshot) => { //overview of notes in db.
       let notes = snapshot.val(); //listener
-
-
       let newState = []; //instatiate & populate with our data.
       for (let note in notes) { //loop over & push results into one object.
         newState.push({id: note, due: notes[note].due, text: notes[note].text});
@@ -72,60 +72,63 @@ class ToDoList extends Component {
     });
   }
 
-
-
   //=================  DELETE THE NOTES FROM FIREBASE.  ==============
+  //link: https://firebase.google.com/docs/database/web/read-and-write
+
   removeNote(noteId) {
-    const noteRef = firebase.database().ref(`/notes/${noteId}`);
+    //users/user/notes/${noteId} deltes.
+    const noteRef = firebase.database().ref(`users/user/notes/${noteId}`);
     noteRef.remove();
   }
 
   //======================  RENDER YOUR FORM.  ============================
 
   render() {
-    console.log(this.state.notes);
-    console.log(this.props.user);
+    // console.log(this.state.notes);
+    // console.log(this.props.user);
+    console.log(this.props.user, 'this is user');
+    // console.log(this.props.uid);
+    // console.log(user, 'this is user');
+    // console.log(this.props.usersRef);
+    // console.log(this.state.notes);
 
     let event = {
-        title: 'Sample Event',
-        description: 'example',
-        location: 'Austin, TX',
-        startTime: '2018-09-23T20:15:00-04:00',
-        endTime: '2018-09-23T21:45:00-04:00'
+      title: 'Sample Event',
+      description: 'example',
+      location: 'Austin, TX',
+      startTime: '2018-09-23T20:15:00-04:00',
+      endTime: '2018-09-23T21:45:00-04:00'
     }
-    return (
-      <div className='notesContainer'>
 
+    return (<div className='notesContainer'>
+      {/* {this.props.login} */}
+      {/* {this.state.user ?
+                   auth.uid == $uid : auth.uid == null} */
+      }
 
       <div className='addNewNote'>
         <Button onClick={this.newNote} id="noteBtn">New Note</Button>
         <Button>
-          <AddToCalendar event={event} />
+          <AddToCalendar event={event}/>
         </Button>
       </div>
 
-
-<div>
-      <Modal
-        isOpen={this.state.modalIsOpen}
-        onRequestClose={this.closeModal}
-        contentLabel="ToDoModal"
-        >
-        <div className='modal-close'>
-  <Button onClick={() => this.setState({modalIsOpen: false})}>X</Button>
-</div>
-        <form onSubmit={this.postNote}>
-          <Row>
-            <Input s={8} type='text' className='noteTitle' name='due' onChange={this.handleChange} value={this.state.due}  label='Due by:'/>
-          </Row>
-          <Row>
-            <Input s={12} className='noteText' name='text' onChange={this.handleChange} value={this.state.text}   label='What:'/>
-          </Row>
-          <Button waves='light' type='submit' value='add new note'>Let's Do It!</Button>
-        </form>
-      </Modal>
+      <div>
+        <Modal isOpen={this.state.modalIsOpen} onRequestClose={this.closeModal} contentLabel="ToDoModal">
+          <div className='modal-close'>
+            <Button onClick={() => this.setState({modalIsOpen: false})}>X</Button>
+          </div>
+          <form onSubmit={this.postNote}>
+            <Row>
+              <Input s={8} type='text' className='noteTitle' name='due' onChange={this.handleChange} value={this.state.due} label='Due by:'/>
+            </Row>
+            <Row>
+              <Input s={12} className='noteText' name='text' onChange={this.handleChange} value={this.state.text} label='What:'/>
+            </Row>
+            <Button waves='light' type='submit' value='add new note'>Let's Do It!</Button>
+          </form>
+        </Modal>
       </div>
-
 
       <section className='display-note'>
         <div className="wrapper">
