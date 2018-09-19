@@ -16,7 +16,7 @@ class App extends Component {
    super();
    this.login = this.login.bind(this);
    this.logout = this.logout.bind(this);
-   this.register = this.register.bind(this);
+   // this.register = this.register.bind(this);
 
    this.state = {
      currentItem: '',
@@ -28,11 +28,6 @@ class App extends Component {
      notes: '',
    }
 }
-
-
-
-
-
 
 // persists your log in over refresh or route change.
 componentDidMount() {
@@ -50,11 +45,11 @@ componentDidMount() {
 
 
 
-// register(){
-register(e){
-  e.preventDefault()
-  firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
-}
+// // register(){
+// register(e){
+//   e.preventDefault()
+//   firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password);
+// }
 
 
   login() {
@@ -70,8 +65,6 @@ register(e){
           const usersRef = firebase.database().ref('users'); //Listener.
           const userData = {
             email: result.user.email,
-            // notes: notes,
-
           }
           usersRef.push(userData);
         }
@@ -119,21 +112,17 @@ register(e){
               onLogoutClick={this.logout}
               user={this.state.user}
               uid={this.state.uid}
-
-
             />}
             />
-
-          {/* <Route exact path='/notepad' component = {Notepad} /> */}
 
           <Route exact path='/notepad'
             render={() => <Notepad
               onLoginClick={this.login}
               onLogoutClick={this.logout}
-              user={this.state.user}/>}
+              user={this.state.user}
+              uid={this.state.uid}
+            />}
             />
-
-
 
           <Route exact path='/calculator' component = {Calculator} />
         </Switch>

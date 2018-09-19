@@ -15,16 +15,12 @@ class ToDoList extends Component {
       notes: [],
       // user: '',
     }
+    this.handleChange = this.handleChange.bind(this);
     this.newNote = this.newNote.bind(this);
     this.postNote = this.postNote.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+
   }
 
-  componentDidMount() {
-    firebase.database().ref().on('value', (res) => {
-      console.log(res.val());
-    });
-  }
 
   handleChange = (e) => {
     this.setState({
@@ -32,7 +28,7 @@ class ToDoList extends Component {
     });
   }
 
-  //=================  NEW NOTE POPS FROM TOP RIGHT TO INPUT DATA. ==============
+  //===============  NEW NOTE POPS FROM TOP RIGHT TO INPUT DATA. ==============
   newNote(e) {
     e.preventDefault();
     this.setState({modalIsOpen: true});
@@ -41,16 +37,15 @@ class ToDoList extends Component {
 
   //======================  POST & CREATE SPACE IN FIREBASE.  ==================
 
-  postNote(e, noteId) { //onSubmit fn.
+  postNote(e) {
     e.preventDefault();
     var user = this.props.uid;
-    const notesRef = firebase.database().ref(`/users/${user}/notes`); //Listener.
+    const notesRef = firebase.database().ref(`/users/${user}/notes`);
     const note = {
       due: this.state.due,
       text: this.state.text
     }
     notesRef.push(note); //sends a copy of our object to store in Firebase.
-
     this.setState({due: '', text: ''}); //set the state back to empty.
     this.setState({modalIsOpen: false}) //close the modal.
   }
@@ -59,25 +54,28 @@ class ToDoList extends Component {
 
   componentDidMount() {
     var user = this.props.uid;
-    var notes = this.state.notes;
+    // var notes = this.state.notes;
     const notesRef = firebase.database().ref(`/users/${user}/notes`);
     notesRef.on('value', (snapshot) => { //overview of notes in db.
       let notes = snapshot.val(); //listener
       let newState = []; //instatiate & populate with our data.
       for (let note in notes) { //loop over & push results into one object.
         newState.push({id: note, due: notes[note].due, text: notes[note].text});
+          //create an individual note here.
       }
       this.setState({ //update state with all the notes in our db.
         notes: newState
       });
-    });
+    })
   }
+
+
+
 
   //=================  DELETE THE NOTES FROM FIREBASE.  ==============
   //link: https://firebase.google.com/docs/database/web/read-and-write
 
   removeNote(noteId) {
-    //users/user/notes/${noteId} deltes.
     var user = this.props.uid;
     const noteRef = firebase.database().ref(`users/${user}/notes/${noteId}`);
     noteRef.remove();
@@ -99,11 +97,6 @@ class ToDoList extends Component {
     }
 
     return (<div className='notesContainer'>
-      {/* {this.props.login} */}
-      {/* {this.state.user ?
-                   auth.uid == $uid : auth.uid == null} */
-      }
-
       <div className='addNewNote'>
         <Button onClick={this.newNote} id="noteBtn">New Note</Button>
         <Button>

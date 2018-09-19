@@ -1,3 +1,4 @@
+
 import React, {Component} from 'react';
 import {Button, Form, Icon, Row, Input} from 'react-materialize';
 import firebase from 'firebase';
@@ -15,15 +16,16 @@ class Notepad extends Component {
     this.handleSave = this.handleSave.bind(this);
 }
 
-//Connects to the firebase backend.
-componentDidMount() {
-  firebase.database().ref().on('value', (res) => {
-    console.log(res.val());
-    // this.setState({notepad:res.val});
-    //  setInterval(this.inc, 1000); for autosave later?
-    //https://medium.com/@baphemot/understanding-reactjs-setstate-a4640451865b
-  });
-}
+
+//FOR LATER: Autosave
+// componentDidMount() {
+//   firebase.database().ref().on('value', (res) => {
+//     console.log(res.val());
+//     // this.setState({notepad:res.val});
+//     //  setInterval(this.inc, 1000); for autosave later?
+//     //https://medium.com/@baphemot/understanding-reactjs-setstate-a4640451865b
+//   });
+// }
 
 
 handleChange = (e) => {
@@ -34,8 +36,8 @@ handleChange = (e) => {
 //UPDATES
 handleSave(e) {
   e.preventDefault();
-
-  const notepadRef = firebase.database().ref('notepadNotes'); //ref method carves out space. 'notepad' is the destination we make in that space.
+  var user = this.props.uid;
+  const notepadRef = firebase.database().ref(`/users/${user}/notepadNote`); //ref method carves out space. 'notepad' is the destination we make in that space.
   const notepadVar = {notepad: this.state.notepad}; //destructures to send to fb.
   notepadRef.set(notepadVar); //replaces, like put. updates is like patch.
   // this.setState({notepad: notepad}); doesnt work bc state is now an object. renders [object Object]
@@ -43,16 +45,21 @@ handleSave(e) {
 
 
 componentDidMount() {
-  const notepadNotesRef = firebase.database().ref('notepadNotes');
+  var user = this.props.uid;
+  const notepadNotesRef = firebase.database().ref(`/users/${user}/notepadNote`);
   notepadNotesRef.on('value', (snapshot) => { //overview of notepad in db.
     let notepadNotes = snapshot.val(); //listener
       this.setState({notepad: notepadNotes.notepad})
 })
 }
 
+
   render() {
-console.log(this.state.notepad);
-console.log(this.props.user);
+    // console.log(this.props.user.email);
+// console.log(this.state.notepad);
+// console.log(this.notepadNotesRef);
+// console.log(this.props.user);
+
 
     return (
       <div className='notepadContainer'>
@@ -69,14 +76,8 @@ console.log(this.props.user);
     </form>
     <p>{this.notepadVar}</p>
   </div>
-
     </div>
-
-
-
-
   </div>
   )}
-
 }
 export default Notepad;
