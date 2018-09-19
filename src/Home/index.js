@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import AuthButtons from '../AuthButtons';
 import Moment from 'react-moment';
 
 class Home extends Component {
