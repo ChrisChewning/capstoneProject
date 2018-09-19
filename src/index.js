@@ -2,18 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { BrowserRouter } from 'react-router-dom';
-import { HashRouter } from 'react-router-dom'
-import registerServiceWorker from './registerServiceWorker';
+import { BrowserRouter, Link, Route } from 'react-router-dom';
+import { BrowserHistory } from 'react';
+import registerServiceWorker from './registerServiceWorker'; //offline or slow connection.
 
-
-{/* <Router history={customHistory}>
-    <div>
-        <Route path="/login" component={Login}/>
-        <Route path="/app/home" component={Home}/>
-        <Redirect from="/" to="/login"/>
-    </div>
-</Router> */}
 
 
 ReactDOM.render(

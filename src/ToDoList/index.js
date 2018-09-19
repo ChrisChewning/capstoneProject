@@ -12,15 +12,12 @@ class ToDoList extends Component {
       modalIsOpen: false,
       due: '',
       text: '',
-      notes: [],
-      // user: '',
+      notes: []
     }
     this.handleChange = this.handleChange.bind(this);
     this.newNote = this.newNote.bind(this);
     this.postNote = this.postNote.bind(this);
-
   }
-
 
   handleChange = (e) => {
     this.setState({
@@ -54,23 +51,19 @@ class ToDoList extends Component {
 
   componentDidMount() {
     var user = this.props.uid;
-    // var notes = this.state.notes;
     const notesRef = firebase.database().ref(`/users/${user}/notes`);
     notesRef.on('value', (snapshot) => { //overview of notes in db.
       let notes = snapshot.val(); //listener
       let newState = []; //instatiate & populate with our data.
       for (let note in notes) { //loop over & push results into one object.
         newState.push({id: note, due: notes[note].due, text: notes[note].text});
-          //create an individual note here.
+        //create an individual note here.
       }
       this.setState({ //update state with all the notes in our db.
         notes: newState
       });
     })
   }
-
-
-
 
   //=================  DELETE THE NOTES FROM FIREBASE.  ==============
   //link: https://firebase.google.com/docs/database/web/read-and-write
@@ -86,7 +79,6 @@ class ToDoList extends Component {
   render() {
     console.log(this.state.notes);
     console.log(this.props.user, 'this is user');
-
 
     let event = {
       title: 'Sample Event',
