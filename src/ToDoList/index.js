@@ -49,11 +49,26 @@ class ToDoList extends Component {
 
   //=================  LOAD ALL THE NOTES when the page loads.  ==============
 
+//getNotes is its own method outside of componentDidMount b.c things were loading asynchronously & the call for the notes was only happening on componentDidMount. It only helps right when it mounts and on refresh or in the url path it had null.
+
+  componentWillReceiveProps(nextProps) { //whenever props changes it makes the componenent update. componentWillReceiveProps catches it right when it updates and says here's the props I have and the nextProps. If one changes do something.
+  
+    if (this.props.uid !== nextProps.uid) {
+      this.getNotes(nextProps.uid);
+    }
+  }
+
   componentDidMount() {
-    var user = this.props.uid;
+    this.getNotes(this.props.uid);
+    console.log('component mounted!');
+  }
+
+  getNotes = (userId) => {
+    var user = userId;
     const notesRef = firebase.database().ref(`/users/${user}/notes`);
     notesRef.on('value', (snapshot) => { //overview of notes in db.
       let notes = snapshot.val(); //listener
+      console.log('notes: ', notes);
       let newState = []; //instatiate & populate with our data.
       for (let note in notes) { //loop over & push results into one object.
         newState.push({id: note, due: notes[note].due, text: notes[note].text});
