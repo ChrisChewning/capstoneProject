@@ -52,13 +52,13 @@ class ToDoList extends Component {
 //getNotes is its own method outside of componentDidMount b.c things were loading asynchronously & the call for the notes was only happening on componentDidMount. It only helps right when it mounts and on refresh or in the url path it had null.
 
   componentWillReceiveProps(nextProps) { //whenever props changes it makes the componenent update. componentWillReceiveProps catches it right when it updates and says here's the props I have and the nextProps. If one changes do something.
-  
+
     if (this.props.uid !== nextProps.uid) {
       this.getNotes(nextProps.uid);
     }
   }
 
-  componentDidMount() {
+  componentDidMount() { //only happens immediately after it shows up. mounts: gets on the page. this is why refresh or url paths don't work. it's like 'I did my job already.'
     this.getNotes(this.props.uid);
     console.log('component mounted!');
   }

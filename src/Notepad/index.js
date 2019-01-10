@@ -14,6 +14,17 @@ class Notepad extends Component {
     this.handleSave = this.handleSave.bind(this);
   }
 
+  componentDidMount() {
+    var user = this.props.uid;
+    const notepadNotesRef = firebase.database().ref(`/users/${user}/notepadNote`);
+
+    notepadNotesRef.on('value', (snapshot) => { //event listener auto updates.
+      let notepadNotes = snapshot.val(); //listener
+      this.setState({notepad: notepadNotes.notepad})
+    })
+  }
+
+
   //FOR LATER: Autosave use setInterval in componentDidMount
   //https://medium.com/@baphemot/understanding-reactjs-setstate-a4640451865b
 
@@ -35,14 +46,8 @@ class Notepad extends Component {
     // this.setState({notepad: notepad}); doesnt work bc state is now an object. renders [object Object]
   }
 
-  componentDidMount() {
-    var user = this.props.uid;
-    const notepadNotesRef = firebase.database().ref(`/users/${user}/notepadNote`);
-    notepadNotesRef.on('value', (snapshot) => { //event listener auto updates.
-      let notepadNotes = snapshot.val(); //listener
-      this.setState({notepad: notepadNotes.notepad})
-    })
-  }
+
+
 
   render() {
     return (<div className='notepadContainer'>
