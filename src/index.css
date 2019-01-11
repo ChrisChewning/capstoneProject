@@ -175,49 +175,68 @@ ul li {
 
 /* HAMBURGER */
 
+/* .open { */
+  /* position: relative;
+  display: block;
+  float: left;
+  left: 250px;
+  top: 20px;
+  color: black;
+  z-index: 2;
+} */
+
+
 @media only screen and (min-width: 1200px) {
   .open {
     position: relative;
     display: block;
     float: left;
-    left: 550px;
-    /* left: 25%; */
+    left: 220px;
     top: 20px;
     color: black;
     z-index: 2;
   }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 1199px) {
- .open {
-    position: relative;
-    left: 130px;
-  }
-}
 
-@media only screen and (min-width : 992px) {
+@media only screen and (min-width : 990px) and (max-width: 1199px){
   .open {
-   position: relative;
-   left: 4130px;
+    position: relative;
+    display: block;
+    float: left;
+    left: 180px;
+    top: 20px;
+    color: black;
+    z-index: 2;
   }
 }
 
-/* iPad */
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
+@media only screen and (min-width: 768px) and (max-width: 989px) {
  .open {
-    position: relative;
-    left: 130px;
+   position: relative;
+   display: block;
+   float: left;
+   left: 130px;
+   top: 20px;
+   color: black;
+   z-index: 2;
   }
 }
 
 
 /* iPhone */
-@media (min-width: 320px) and (max-width: 480px) {
- .open {
-  position: relative;
-  left: 1110px;
+@media (min-width: 480px) and (max-width: 767px) {
+  .open {
+    position: relative;
+    display: block;
+    float: left;
+    left: 80px;
+    top: 20px;
+    color: white;
+    z-index: 2;
+   }
  }
-}
+
 
 
 
