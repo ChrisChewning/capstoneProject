@@ -7,7 +7,15 @@
 body {
   background-image: url("./img/backgroundImage.jpg");
   background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
+    webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height:100%;
+    width:100%;
 }
 
 /* HOME */
@@ -33,7 +41,7 @@ body {
 .homeImg {
   /* width: 400px; */
   /* height: 400px; */
-    max-width: 33.3%;
+    max-width: 50%;
     height: auto;
     width: auto\9; /* ie8 */
 }
@@ -225,7 +233,7 @@ ul li {
 
 
 /* iPhone */
-@media (min-width: 480px) and (max-width: 767px) {
+@media (min-width: 320px) and (max-width: 767px) {
   .open {
     position: relative;
     display: block;
@@ -315,24 +323,28 @@ h6 {
 }
 
 
+
+
 /* CALCULATOR  */
 
 .calculatorWrapper {
   margin-left: 33.3%;
+  margin-top: 10%;
   border: 3px solid black;
   border-radius: 0% 0% 7% 7%;
-  width: 500px;
-  height: 650px;
+  max-width: 70%;
+  height: 80%;
   text-align: center;
   background-color: white;
 }
+
 
 .cal-key {
   background-color: #D3D3D3;
   color: black;
   /* padding: 7%; */
-  width: 90px;
-  height: 90px;
+  width: 20%;
+  height: 40%;
   margin: 1%;
   /* height: 15%; */
   border-radius: 50%;
@@ -357,5 +369,5 @@ h6 {
 }
 
 .key-equals {
-  width: 200px;
+  width: 100px;
 }
