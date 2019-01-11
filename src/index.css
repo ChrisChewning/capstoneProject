@@ -116,7 +116,8 @@ ul li {
   display: inline-block;
   margin-top: 1%;
   margin-right: 0%;
-  overflow-wrap: break-word;
+  font-size: 2.2vmax
+  /* overflow-wrap: break-word; */
 }
 
 
