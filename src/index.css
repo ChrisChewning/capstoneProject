@@ -19,6 +19,8 @@ body {
 }
 
 .homeDate {
+  margin-left: 20%;
+  margin-right: 20%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,8 +31,11 @@ body {
 }
 
 .homeImg {
-  width: 400px;
-  height: 400px;
+  /* width: 400px; */
+  /* height: 400px; */
+    max-width: 33.3%;
+    height: auto;
+    width: auto\9; /* ie8 */
 }
 
 .googleBtns {
@@ -110,6 +115,8 @@ a.yahoo-link, a.outlook-link, a.outlookcom-link, a.apple-link {
 ul li {
   display: inline-block;
   margin-top: 1%;
+  margin-right: 0%;
+  overflow-wrap: break-word;
 }
 
 
@@ -166,15 +173,52 @@ ul li {
 }
 
 /* HAMBURGER */
-.open {
-  position: relative;
-  display: block;
-  float: left;
-  left: 230px;
-  top: 20px;
-  color: black;
-  z-index: 2;
+
+@media only screen and (min-width: 1200px) {
+  .open {
+    position: relative;
+    display: block;
+    float: left;
+    left: 550px;
+    /* left: 25%; */
+    top: 20px;
+    color: black;
+    z-index: 2;
+  }
 }
+
+@media only screen and (min-width: 768px) and (max-width: 1199px) {
+ .open {
+    position: relative;
+    left: 130px;
+  }
+}
+
+@media only screen and (min-width : 992px) {
+  .open {
+   position: relative;
+   left: 4130px;
+  }
+}
+
+/* iPad */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+ .open {
+    position: relative;
+    left: 130px;
+  }
+}
+
+
+/* iPhone */
+@media (min-width: 320px) and (max-width: 480px) {
+ .open {
+  position: relative;
+  left: 1110px;
+ }
+}
+
+
 
 
 /* SPAN conflicted with the calendar's preset CSS. Changed to h6. */
