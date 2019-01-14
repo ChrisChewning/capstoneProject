@@ -113,7 +113,7 @@ class Calculator extends Component {
 
         <div className='input-keys'>
           <div className='function-keys'>
-            <button className='cal-key key-clear' onClick={() => this.clear()}>AC</button>
+            <button className='cal-key key-clear' id='AC' onClick={() => this.clear()}>AC</button>
             <button className='cal-key key-sign' onClick={() => this.togglePN()}>±</button>
             <button className='cal-key key-percent' onClick={() => this.percent()}>%</button>
             <button className='cal-key key-divide key-operation' onClick={() => this.performOperation('/')}>/</button>
@@ -121,7 +121,7 @@ class Calculator extends Component {
 
           <div className='digit-keys'>
             <div className='top-row'>
-              <Button className='cal-key key-7' labe="7" value='7' onClick={() => this.inputDigit(7)} label='7'>7</Button>
+              <Button className='cal-key key-7' label="7" value='7' onClick={() => this.inputDigit(7)} label='7'>7</Button>
               <Button className='cal-key key-8' onClick={() => this.inputDigit(8)} label='8' value='8'>8</Button>
               <Button className='cal-key key-9' onClick={() => this.inputDigit(9)} label='9' value='9'>9</Button>
               <Button className='cal-key key-multiply key-operation' label='x' value='x' onClick={() => this.performOperation('*')}>x</Button>
@@ -143,10 +143,10 @@ class Calculator extends Component {
 
             </div>
 
-            <button className='cal-key key-0' onClick={() => this.inputDigit(0)}>0</button>
-            <button className='cal-key key-decimal' onClick={() => this.inputDot()} label='decimal' value='decimal'>.</button>
+            <Button className='cal-key key-0' onClick={() => this.inputDigit(0)}>0</Button>
+            <Button className='cal-key key-decimal' onClick={() => this.inputDot()} label='decimal' value='decimal'>.</Button>
 
-            <button className='cal-key key-equals' onClick={() => this.performOperation('=')}>=</button>
+            <Button className='cal-key key-equals' onClick={() => this.performOperation('=')}>=</Button>
 
           </div>
         </div>
